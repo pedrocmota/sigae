@@ -1,0 +1,7 @@
+node_modules
+server/config/certificates/*
+!server/config/certificates/certificate.example.cert
+!server/config/certificates/certificate.example.key
+.next
+.build
+.env
