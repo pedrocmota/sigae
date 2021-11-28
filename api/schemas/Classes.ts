@@ -21,4 +21,6 @@ const schema = new mongoose.Schema<IClasses>({
   }
 })
 
-export const Classes = mongoose.model('classes', schema)
+export const ClassesModel = (
+  mongoose.models.classes || mongoose.model('classes', schema)
+) as mongoose.Model<IClasses, {}, {}, {}>

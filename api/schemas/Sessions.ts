@@ -32,4 +32,6 @@ const schema = new mongoose.Schema<ISessions>({
   }
 })
 
-export const Sessions = mongoose.model('sessions', schema)
+export const SessionsModel = (
+  mongoose.models.sessions || mongoose.model('sessions', schema)
+) as mongoose.Model<ISessions, {}, {}, {}>

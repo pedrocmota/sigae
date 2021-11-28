@@ -2,16 +2,16 @@
   "name": "sigae",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.ts",
+  "main": "api/index.ts",
   "author": "Pedro Mota e João Costa",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server/index.ts",
+    "dev": "nodemon api/index.ts",
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build": "npm run build:next && npm run build:server && node build.js",
-    "seeds:dev": "ts-node ./server/config/seeds/dev.ts",
-    "seeds:virgin": "ts-node ./server/config/seeds/virgin.ts"
+    "seeds:dev": "ts-node ./api/config/seeds/dev.ts",
+    "seeds:virgin": "ts-node ./api/config/seeds/virgin.ts"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",

@@ -17,9 +17,11 @@ export interface IUser {
   teacher: {
     subjects: string[]
   },
-  configs: {
-    theme: string
-  }
+  configs: IUserConfig
+}
+
+export interface IUserConfig {
+  theme: 'LIGHT' | 'DARK'
 }
 
 const schema = new mongoose.Schema<IUser>({
@@ -80,4 +82,6 @@ const schema = new mongoose.Schema<IUser>({
   }
 })
 
-export const Users = mongoose.model('users', schema)
+export const UsersModel = (
+  mongoose.models.users || mongoose.model('users', schema)
+) as mongoose.Model<IUser, {}, {}, {}>

@@ -35,4 +35,6 @@ const schema = new mongoose.Schema<ICodes>({
   }
 })
 
-export const Codes = mongoose.model('codes', schema)
+export const CodesModel = (
+  mongoose.models.codes || mongoose.model('codes', schema)
+) as mongoose.Model<ICodes, {}, {}, {}>

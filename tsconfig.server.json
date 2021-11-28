@@ -2,11 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": ".build/server",
+    "outDir": ".build/api",
     "noEmit": false,
-    "incremental": false,
+    "incremental": false
   },
   "include": [
-    "server"
+    "api"
   ]
 }

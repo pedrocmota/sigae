@@ -22,7 +22,7 @@
     "jsx": "preserve",
     "incremental": true,
     "typeRoots": [
-      "./server/types",
+      "./api/types",
     ]
   },
   "exclude": [

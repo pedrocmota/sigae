@@ -11,4 +11,6 @@ const schema = new mongoose.Schema<ISubjects>({
   }
 })
 
-export const Subjects = mongoose.model('subjects', schema)
+export const SubjectsModel = (
+  mongoose.models.subjects || mongoose.model('subjects', schema)
+) as mongoose.Model<ISubjects, {}, {}, {}>

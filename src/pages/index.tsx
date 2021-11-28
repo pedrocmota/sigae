@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled, {createGlobalStyle} from 'styled-components'
 import {GetServerSideProps, NextComponentType, NextPageContext} from 'next'
 import Link from 'next/link'

@@ -9,9 +9,6 @@ export const TesteContext = createContext<ITesteContext>({} as ITesteContext)
 export const useTeste = () => useContext(TesteContext)
 
 export const TesteProvider: React.FunctionComponent = (props) => {
-  useEffect(() => {
-    console.log('teste')
-  }, [])
   return (
     <TesteContext.Provider value={{}}>
       {props.children}

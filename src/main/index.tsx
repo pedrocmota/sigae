@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
@@ -11,9 +11,11 @@ interface IMain {
 const Main: React.FunctionComponent<IMain> = ({children}) => {
   const Module = children
   const id = 'fora bolsonaro'
+  const [num, setNum] = useState(0)
   return (
     <Container>
       <aside>
+        <button onClick={() => setNum(num + 1)}>{num}</button>
         <h1>{id}</h1>
         <Link href="/">
           <a>Inicio</a>

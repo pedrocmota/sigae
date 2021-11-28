@@ -17,6 +17,7 @@ export const env = loadConfig()
 export const mailer = loadSMTP()
 
 import Sessions from './routes/Sessions'
+import Configs from './routes/Configs'
 
 console.info(dedent(`
   ${chalk.green('[Server]')} Iniciando servidor Node ${chalk.cyan(`${process.version}`)}
@@ -60,6 +61,7 @@ conn.then(async () => {
     })
 
     app.use('/api', Sessions)
+    app.use('/api', Configs)
 
     app.all('/api/*', (req, res) => {
       res.status(404).send({error: 'NOT_FOUND'})

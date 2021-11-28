@@ -1,6 +1,7 @@
 import React from 'react'
 import {GetServerSideProps} from 'next'
-import {getPageSession} from '../../server/Session'
+import {getPageSession} from '../../server/SideProps'
+import {getUserConfig} from '../../../api/models/Configs'
 
 const Login: React.FunctionComponent<any> = (props) => {
   return (
@@ -12,10 +13,12 @@ const Login: React.FunctionComponent<any> = (props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = getPageSession(context)
+  const session = await getPageSession(context)
+  const config = await getUserConfig(session?.user)
+  console.log(session, config)
   return {
     props: {
-      session: session
+      session: ''
     }
   }
 }

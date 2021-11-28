@@ -11,4 +11,6 @@ const schema = new mongoose.Schema<ICampus>({
   }
 })
 
-export const Campus = mongoose.model('campus', schema)
+export const CampusModel = (
+  mongoose.models.campus || mongoose.model('campus', schema)
+) as mongoose.Model<ICampus, {}, {}, {}>
