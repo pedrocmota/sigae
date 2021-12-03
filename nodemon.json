@@ -6,7 +6,7 @@
   ],
   "watch": [
     "src/**",
-    "api/**"
+    "server/**"
   ],
   "ext": "js json ts"
 }

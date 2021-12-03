@@ -34,7 +34,6 @@
     "no-unused-vars": "off",
     "prefer-const": "off",
     "no-constant-condition": "off",
-    "arrow-parens": "warn",
     "comma-dangle": [
       "warn",
       "never"

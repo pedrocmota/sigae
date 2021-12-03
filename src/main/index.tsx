@@ -30,7 +30,7 @@ const Main: React.FunctionComponent<IMain> = ({children}) => {
           <a>Modulo3</a>
         </Link>
       </aside>
-      {/* {Module} */}
+      {Module}
     </Container>
   )
 }
