@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import ErrorIcon from '@material-ui/icons/Error'
-import SpinnerSVG from '../../../public/spinner.svg'
+import SpinnerSVG from '../../../public/assets/spinner.svg'
 
 interface IInputErrorIcon {
   visible: number

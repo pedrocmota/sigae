@@ -59,6 +59,7 @@ const PopupStyles = createGlobalStyle`
     &:disabled {
       background-color: ${props => props.theme.components.popup.okButton.disabled.background} !important;
       color: ${props => props.theme.components.popup.okButton.disabled.foreground} !important;
+      background-image: none !important;
     }
   }
 
@@ -68,6 +69,7 @@ const PopupStyles = createGlobalStyle`
     &:disabled {
       background-color: ${props => props.theme.components.popup.cancelButton.disabled.background} !important;
       color: ${props => props.theme.components.popup.cancelButton.disabled.foreground} !important;
+      background-image: none !important;
     }
   }
 `

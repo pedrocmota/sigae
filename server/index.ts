@@ -19,6 +19,7 @@ export const mailer = loadSMTP()
 
 import Sessions from './routes/Sessions'
 import Configs from './routes/Configs'
+import Codes from './routes/Codes'
 
 import {getInitialProps} from './models/Configs'
 
@@ -62,6 +63,7 @@ conn.then(async () => {
 
     app.use('/api', Sessions)
     app.use('/api', Configs)
+    app.use('/api', Codes)
 
     app.all('/api/*', (req, res) => {
       res.status(404).send({error: 'NOT_FOUND'})

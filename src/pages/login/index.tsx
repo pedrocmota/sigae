@@ -1,6 +1,7 @@
 import React, {useState, useCallback, useRef} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import Loading from '../../components/Loading'
 import Form from 'react-unform'
 import LoginInput from '../../components/LoginInput'
 import PrimaryButton from '../../components/PrimaryButton'
@@ -9,6 +10,7 @@ import ShowPassword from '../../components/ShowPassword'
 import {Container, Center, Header, Main, Footer, LinksContainer, LinksRow} from '../../styles/pages/Login'
 import {useToasts} from 'react-toast-notifications'
 import {useAPI} from '../../providers/APIContext'
+import {useRouter} from 'next/router'
 import {showRecoverPassword} from '../../popups/RecoverPassword'
 import sigaeIcon from '../../../public/sigae.svg'
 
@@ -43,6 +45,7 @@ const Login: React.FunctionComponent<any> = (props) => {
 
   const {addToast} = useToasts()
   const {sendPost} = useAPI()
+  const {push} = useRouter()
 
   const sendLogin = useCallback(() => {
     if (!sending) {
@@ -66,19 +69,19 @@ const Login: React.FunctionComponent<any> = (props) => {
           setSending(false)
           if (status === 406) {
             if (response.error === 'UNKNOWN_USER') {
-              return addToast('Matrícula desconhecida', {appearance: 'error'})
+              return addToast('Login desconhecido', {appearance: 'error'})
             }
             if (response.error === 'INCORRECT_PASSWORD') {
               return addToast('Senha incorreta', {appearance: 'error'})
             }
             if (response.error === 'INACTIVE_ACCOUNT') {
-              return addToast('Essa matrícula não está registrada', {appearance: 'error'})
+              return addToast('Essa matrícula ainda não está registrada', {appearance: 'error'})
             }
             if (response.error === 'DISABLED_ACCOUNT') {
-              return addToast('Essa conta foi inativada', {appearance: 'error'})
+              return addToast('Essa matrícula foi inativada', {appearance: 'error'})
             }
             if (response.error === 'ACCOUNT_NOT_REGISTERED') {
-              // return history.push(`/registro/${response.code}/validar`)
+              push(`/registro/${response.code}/validar`)
             }
             addToast(`Erro desconhecido (${status})`, {appearance: 'error'})
           } else {
@@ -109,6 +112,7 @@ const Login: React.FunctionComponent<any> = (props) => {
 
   return (
     <Container>
+      <Loading />
       <Center>
         <Head>
           <title>SiGAÊ - Login</title>

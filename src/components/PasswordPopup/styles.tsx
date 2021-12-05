@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-// import Fade from 'react-fade-container'
+import Fade from '../Fade'
 
-export const FadeContainer = styled.div`
+export const FadeContainer = styled(Fade)`
   position: absolute;
   width: 320px;
   height: 170px;

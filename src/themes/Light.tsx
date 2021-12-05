@@ -50,7 +50,7 @@ const Light: DefaultTheme = {
         background: '#ea5455',
         foreground: '#ffffff',
         disabled: {
-          background: '#eab4b4',
+          background: '#B7BECA',
           foreground: '#ffffff'
         }
       }

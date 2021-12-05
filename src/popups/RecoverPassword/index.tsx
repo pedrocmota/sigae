@@ -81,26 +81,30 @@ export const showRecoverPassword = () => {
   }).then((result) => {
     const input = document.getElementById('recoverPassword') as HTMLInputElement
     if (result.isConfirmed) {
-      sendPost<IRecoveryParams, ISuccess, IError>('/user/password/sendMail', {
+      sendPost<IRecoveryParams, ISuccess, IError>('/codes/password/send', {
         email: input.value
       }, false, () => {
-        Swal.fire({
-          icon: 'info',
-          showClass: {
-            popup: ''
-          },
-          hideClass: {
-            popup: 'animated fadeOut'
-          },
-          html: `
-          <p style="margin-bottom: 15px">
-          Se este e-mail estiver em nossos registros, nós enviaremos um e-mail
-          com um código para que você possa recuperar sua senha.
-          </p>`
-        })
+        setTimeout(() => {
+          Swal.fire({
+            icon: 'info',
+            showClass: {
+              popup: ''
+            },
+            hideClass: {
+              popup: 'animated fadeOut'
+            },
+            html: `
+            <p style="margin-bottom: 15px">
+            Se este endereço de e-mail for correto, nós enviaremos um mensagem com um código
+            para que você possa trocar sua senha
+            </p>`
+          })
+        }, 1000)
       }, (response, status) => {
         if (status === 429) {
-          addToast('Espere 1 minuto para mandar outro e-mail', {appearance: 'error'})
+          return addToast('Espere 1 minuto para mandar outro e-mail', {appearance: 'error'})
+        } else {
+          return addToast('Erro desconhecido', {appearance: 'error'})
         }
       })
     }

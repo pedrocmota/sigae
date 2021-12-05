@@ -124,6 +124,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .MuiMenu-root {
+    z-index: 20000 !important;
     .MuiPaper-root {
       background: transparent;
     }
@@ -198,6 +199,24 @@ const GlobalStyles = createGlobalStyle`
   .fadeOut {
     -webkit-animation-name: fadeOut;
     animation-name: fadeOut;
+  }
+
+  @keyframes container_fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes container_fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 `
 

@@ -32,7 +32,7 @@ const PasswordPopup: React.FunctionComponent<IPopupSenha> = ({password, ...props
     return ['Desconhecida', theme.components.passwordPopup.colors.bad]
   }, [password])
   return (
-    <FadeContainer className="passwordPopup">
+    <FadeContainer className="passwordPopup" visible={props.visible} timer={200}>
       <InternalContainer color={color}>
         <div className="top">
           <span className="text">Força da senha:</span>

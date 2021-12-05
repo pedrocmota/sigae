@@ -5,7 +5,7 @@ export const Dialog = styled(DialogStyled)`
   height: 600px !important;
   top: auto !important;
   bottom: 0px !important;
-  /* z-index: 10000 !important; */
+  z-index: 10000 !important;
   @media (max-height: 860px) {
     height: 100% !important;
   }

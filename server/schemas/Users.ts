@@ -1,5 +1,5 @@
 import {mongoose} from '../database'
-import {themeNames} from '../types/Global'
+import {user_states, user_types, themeNames} from '../types/Global'
 
 export interface IUser {
   name: string,
@@ -9,8 +9,8 @@ export interface IUser {
   password: string,
   campus: string,
   registrationCode: string,
-  type: string,
-  status: string,
+  type: user_types,
+  status: user_states,
   student: {
     course: string,
     class: string

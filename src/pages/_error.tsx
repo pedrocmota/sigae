@@ -1,12 +1,24 @@
 import {NextPageContext} from 'next'
+import Head from 'next/head'
+import {useRouter} from 'next/router'
+import Button from '../components/PrimaryButton/index'
+import {Container} from '../styles/pages/404'
 
 const Error = ({statusCode}) => {
+  const {push} = useRouter()
   return (
-    <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : 'An error occurred on client'}
-    </p>
+    <Container>
+      <Head>
+        <title>Erro {statusCode}</title>
+      </Head>
+      <h1>{statusCode}</h1>
+      <span>Ocorreu um erro grave</span>
+      <Button onClick={() => {
+        push('/')
+      }}>
+        Voltar para o início
+      </Button>
+    </Container>
   )
 }
 
