@@ -34,6 +34,21 @@ const Light: DefaultTheme = {
     loading: {
       background: '#f1f2f3'
     },
+    console: {
+      background: '#ffffff',
+      topBar: {
+        background: '#ffffff',
+        foreground: '#4e5f78'
+      },
+      collapsible: {
+        selectBackground: '#fff1e7',
+        error: '#e71640',
+        warning: '#f19b2a',
+        msg: '#201f1f',
+        arrow: '#4e5f78'
+      },
+      emptyText: '#2c3749'
+    },
     popup: {
       background: '#ffffff',
       foreground: '#131212',
@@ -165,37 +180,33 @@ const Light: DefaultTheme = {
         }
       }
     },
-    console: {
-      background: '#ffffff',
-      topBar: {
-        background: '#ffffff',
-        foreground: '#4e5f78'
+    register: {
+      code: {
+        background: '#f1f2f3',
+        title: '#3b3b4b'
       },
-      collapsible: {
-        selectBackground: '#fff1e7',
-        error: '#e71640',
-        warning: '#f19b2a',
-        msg: '#201f1f',
-        arrow: '#4e5f78'
+      form: {
+        background: '#f1f2f3',
+        title: '#3b3b4b',
+        header: '#3b3b4b',
+        banner: {
+          background: '#546274',
+          color: '#ffffff'
+        }
       },
-      emptyText: '#2c3749'
-    },
-    registerCode: {
-      background: '#f1f2f3',
-      title: '#3b3b4b'
-    },
-    registerForm: {
-      background: '#f1f2f3',
-      title: '#3b3b4b',
-      header: '#3b3b4b',
-      banner: {
-        background: '#546274',
-        color: '#ffffff'
+      validation: {
+        background: '#f1f2f3',
+        title: '#3b3b4b'
       }
     },
-    registerValidation: {
-      background: '#f1f2f3',
-      title: '#3b3b4b'
+    code: {
+      gradient: {
+        start: '#606c88',
+        end: '#404d6c'
+      },
+      container: '#fafafa',
+      title: '#54719c',
+      invalid: '#fafafa'
     },
     notFound: {
       background: '#f1f2f3',

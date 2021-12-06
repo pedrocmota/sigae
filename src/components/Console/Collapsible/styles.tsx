@@ -16,14 +16,14 @@ export const Container = styled.div<IContainer>`
   margin-bottom: 3px;
   cursor: pointer;
   ${({open}) => open && css`
-    background-color: ${props => props.theme.pages.console.collapsible.selectBackground};
+    background-color: ${props => props.theme.components.console.collapsible.selectBackground};
   `}
   .datetime, .title {
     ${({type}) => type == 'ERROR' && css`
-      color: ${props => props.theme.pages.console.collapsible.error};
+      color: ${props => props.theme.components.console.collapsible.error};
     `}
     ${({type}) => type == 'WARNING' && css`
-      color: ${props => props.theme.pages.console.collapsible.warning};
+      color: ${props => props.theme.components.console.collapsible.warning};
     `}
   }
 `
@@ -40,7 +40,7 @@ export const Header = styled.div`
 `
 
 export const Arrow = styled(ArrowRight) <Omit<IContainer, 'type'>>`
-  color: ${props => props.theme.pages.console.collapsible.arrow};
+  color: ${props => props.theme.components.console.collapsible.arrow};
   ${({open}) => open && css`
     transform: rotateZ(90deg) !important;
   `}
@@ -55,7 +55,7 @@ export const Body = styled.div<Omit<IContainer, 'type'>>`
   padding-left: 25px;
   margin-bottom: 5px;
   transition: height 200ms;
-  color: ${props => props.theme.pages.console.collapsible.msg};
+  color: ${props => props.theme.components.console.collapsible.msg};
   ${({open}) => open && css`
     height: auto;
   `}

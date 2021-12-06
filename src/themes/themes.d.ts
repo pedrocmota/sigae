@@ -39,6 +39,21 @@ declare module 'styled-components' {
       loading: {
         background: string
       },
+      console: {
+        background: string,
+        topBar: {
+          background: string,
+          foreground: string
+        },
+        collapsible: {
+          selectBackground: string,
+          error: string,
+          warning: string,
+          msg: string,
+          arrow: string
+        },
+        emptyText: string
+      },
       popup: {
         background: string,
         foreground: string,
@@ -170,37 +185,33 @@ declare module 'styled-components' {
           }
         }
       },
-      console: {
-        background: string,
-        topBar: {
+      register: {
+        code: {
           background: string,
-          foreground: string
+          title: string
         },
-        collapsible: {
-          selectBackground: string,
-          error: string,
-          warning: string,
-          msg: string,
-          arrow: string
-        },
-        emptyText: string
-      },
-      registerCode: {
-        background: string,
-        title: string
-      },
-      registerForm: {
-        background: string,
-        title: string,
-        header: string,
-        banner: {
+        form: {
           background: string,
-          color: string
+          title: string,
+          header: string,
+          banner: {
+            background: string,
+            color: string
+          }
+        },
+        validation: {
+          background: string,
+          title: string
         }
       },
-      registerValidation: {
-        background: string,
-        title: string
+      code: {
+        gradient: {
+          start: string,
+          end: string
+        },
+        container: string,
+        title: string,
+        invalid: string
       },
       notFound: {
         background: string,

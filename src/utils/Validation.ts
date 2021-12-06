@@ -19,7 +19,7 @@ export const passwordStrength = (password: string) => {
     validUppercase: validUppercase,
     validNumbers: validNumbers,
     validSpecials: validSpecials,
-    strength: num,
+    strength: num
   }
   return retorno
 }

@@ -7,8 +7,8 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
-    ${props => props.theme.pages.login.gradient.start},
-    ${props => props.theme.pages.login.gradient.end}
+    ${props => props.theme.pages.code.gradient.start},
+    ${props => props.theme.pages.code.gradient.end}
   );
 `
 
@@ -20,7 +20,7 @@ export const Center = styled.div`
   width: 600px;
   height: 438px;
   box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.1);
-  background-color: ${props => props.theme.pages.login.container};
+  background-color: ${props => props.theme.pages.code.container};
   border-radius: 5px;
   @media (max-width: 780px) {
     width: 100%;
@@ -42,7 +42,7 @@ export const Header = styled.header`
     margin-top: 10px;
     margin-bottom: 10px;
     line-height: 1.1;
-    color: ${props => props.theme.pages.login.title};
+    color: ${props => props.theme.pages.code.title};
   }
 `
 
@@ -72,7 +72,7 @@ export const Invalid = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  color: ${props => props.theme.pages.login.title};
+  color: ${props => props.theme.pages.code.invalid};
 `
 
 export const PasswordPopupContainer = styled.div`

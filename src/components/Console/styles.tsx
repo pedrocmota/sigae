@@ -17,7 +17,7 @@ export const ConsoleBar = styled.div`
   align-items: center;
   width: 100%;
   height: 82px;
-  background-color: ${props => props.theme.pages.console.topBar.background};
+  background-color: ${props => props.theme.components.console.topBar.background};
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   .consoleBar {
     display: inline-flex;
@@ -29,26 +29,26 @@ export const ConsoleBar = styled.div`
     h2 {
       padding-left: 15px;
       font-size: 22px;
-      color: ${props => props.theme.pages.console.topBar.foreground};
+      color: ${props => props.theme.components.console.topBar.foreground};
     }
   }
   .right {
     .themes {
       margin-right: 15px;
       span > svg {
-        color: ${props => props.theme.pages.console.topBar.foreground};
+        color: ${props => props.theme.components.console.topBar.foreground};
       }
     }
     .clear {
       margin-right: 15px;
       span > svg {
-        color: ${props => props.theme.pages.console.topBar.foreground};
+        color: ${props => props.theme.components.console.topBar.foreground};
       }
     }
     .close {
       margin-right: 15px;
       span > svg {
-        color: ${props => props.theme.pages.console.topBar.foreground};
+        color: ${props => props.theme.components.console.topBar.foreground};
       }
     }
   }
@@ -68,7 +68,7 @@ export const Container = styled.div<{isEmpty: boolean}>`
   flex: 1;
   overflow-y: auto;
   padding: 15px;
-  background-color: ${props => props.theme.pages.console.background};
+  background-color: ${props => props.theme.components.console.background};
   ${({isEmpty}) => isEmpty && css`
     justify-content: center;
   `}
@@ -76,7 +76,7 @@ export const Container = styled.div<{isEmpty: boolean}>`
 
 export const EmptyText = styled.div`
   font-size: 25px;
-  color: ${props => props.theme.pages.console.emptyText};
+  color: ${props => props.theme.components.console.emptyText};
   text-align: center;
   @media (max-width: 372px) {
     font-size: 22px;
