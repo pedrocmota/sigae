@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {GetServerSideProps} from 'next'
 import Head from 'next/head'
+import NextLink from 'next/link'
 import Loading from '../../../components/Loading'
 import PrimaryInput from '../../../components/PrimaryInput'
 import Select from '../../../components/Select'
@@ -166,7 +167,11 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
       </Head>
       <Loading />
       <Top>
-        <img src={sigaeIcon} alt="Logo do SiGAÊ" />
+        <NextLink href="/">
+          <a>
+            <img src={sigaeIcon} alt="Logo do SiGAÊ" />
+          </a>
+        </NextLink>
         <h1>Formulário de inscrição</h1>
       </Top>
       <Main>

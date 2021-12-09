@@ -1,5 +1,6 @@
 import React, {useState, useRef, useCallback} from 'react'
 import Head from 'next/head'
+import NextLink from 'next/link'
 import Loading from '../../components/Loading'
 import PinInput from '../../components/PinInput'
 import PrimaryButton from '../../components/PrimaryButton'
@@ -45,7 +46,11 @@ const RegisterForm: React.FunctionComponent = () => {
       </Head>
       <Loading />
       <Top>
-        <img src={sigaeIcon} alt="Logo do SiGAÊ" />
+        <NextLink href="/">
+          <a>
+            <img src={sigaeIcon} alt="Logo do SiGAÊ" />
+          </a>
+        </NextLink>
         <h1>Digite o código de inscrição</h1>
       </Top>
       <Main>
