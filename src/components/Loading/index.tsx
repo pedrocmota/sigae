@@ -24,7 +24,7 @@ const Loading: React.FunctionComponent<ILoading> = (props) => {
     }
   }, [])
   return (
-    <Fade visible={props.visible !== undefined ? props.visible : visible} timer={600}
+    <Fade className="loadingFade" visible={props.visible !== undefined ? props.visible : visible} timer={600}
       style={{position: 'absolute', zIndex: 9000}}>
       <Container>
         {(themeName === 'LIGHT') && (

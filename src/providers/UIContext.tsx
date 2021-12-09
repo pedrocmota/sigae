@@ -66,6 +66,13 @@ export const UIProvider: React.FunctionComponent<IInitialProps> = (props) => {
       <ThemeProvider theme={theme}>
         <Global />
         <Popups />
+        <noscript>
+          <style>
+            {`.loadingFade {
+              display: none
+            }`}
+          </style>
+        </noscript>
         {props.children}
       </ThemeProvider>
     </UIContext.Provider>
