@@ -5,7 +5,6 @@ import {requireSession} from '../middleware/requireSession'
 import {slowDown} from '../middleware/rateLimit'
 import {getUserByLogin} from '../models/Users'
 import {getSessionByID, generateSession, getSessionsList, deleteSession} from '../models/Sessions'
-import {env} from '../index'
 
 const routes = Router()
 
@@ -26,7 +25,7 @@ routes.post('/sessions/login',
         if (await compare(req.body.password, user.password)) {
           const session = await generateSession(user.id, user.type, agent, ip)
           res.cookie('session', session._id, {
-            maxAge: env.SESSION_TIME * 1000
+            maxAge: process.env.SESSION_TIME as unknown as number * 1000
           })
           res.send({token: session._id})
         } else {
@@ -37,7 +36,10 @@ routes.post('/sessions/login',
           return res.status(406).send({error: 'UNREGISTERED_ACCOUNT'})
         }
         if (user.status === 'UNCONFIRMED') {
-          return res.status(406).send({error: 'UNCONFIRMED_ACCOUNT'})
+          return res.status(406).send({
+            error: 'UNCONFIRMED_ACCOUNT',
+            registrationCode: user.registrationCode
+          })
         }
         if (user.status === 'DISABLED') {
           return res.status(406).send({error: 'DISABLED_ACCOUNT'})
@@ -65,7 +67,7 @@ routes.get('/sessions/:session',
       if (session.user === req.session?.user) {
         return res.send(session)
       } else {
-        return res.status(403).send({error: 'ACCESS_DENIED'})
+        return res.sendStatus(403).send({error: 'ACCESS_DENIED'})
       }
     } else {
       return res.status(404).send({error: 'UNKNOW_SESSION'})

@@ -3,9 +3,10 @@ import {user_states, user_types, themeNames} from '../types/Global'
 
 export interface IUser {
   name: string,
-  preferred_name: string,
+  preferredName: string,
   userNumber: string,
   email: string,
+  unconfirmedEmail: string,
   password: string,
   campus: string,
   registrationCode: string,
@@ -13,7 +14,7 @@ export interface IUser {
   status: user_states,
   student: {
     course: string,
-    class: string
+    classNumber: string
   },
   teacher: {
     subjects: string[]
@@ -30,7 +31,7 @@ const schema = new mongoose.Schema<IUser>({
     type: String,
     required: true
   },
-  preferred_name: {
+  preferredName: {
     type: String
   },
   userNumber: {
@@ -39,8 +40,11 @@ const schema = new mongoose.Schema<IUser>({
   },
   email: {
     type: String,
-    lowercase: true,
-    unique: false
+    lowercase: true
+  },
+  unconfirmedEmail: {
+    type: String,
+    lowercase: true
   },
   password: {
     type: String
@@ -72,7 +76,8 @@ const schema = new mongoose.Schema<IUser>({
   },
   teacher: {
     subjects: {
-      type: [String]
+      type: [String],
+      default: undefined
     }
   },
   configs: {

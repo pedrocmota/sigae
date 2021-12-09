@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import {ThemeProvider} from 'styled-components'
+import axios from 'axios'
 import {Wrapper, Header, Sigae, Title, Overflow} from '../PopupsComponents'
 import {showPopup} from '../Popup'
 import {contexts} from '../../providers/Globalizer'
 
 const Policy: React.FunctionComponent<any> = () => {
-  const {sendGet} = contexts.APIContext
   const [policy, setPolicy] = useState('')
 
   useEffect(() => {
-    sendGet<any, string, any>('/statics/policy', null, false, (response) => {
-      setPolicy(response.toString())
-    }, () => {
-      setPolicy('Erro ao carregar a política')
+    axios.get('/policy.html').then((response) => {
+      setPolicy(response.data)
+    }).catch(() => {
+      setPolicy('Erro ao carregar')
     })
   }, [])
 
@@ -21,7 +21,7 @@ const Policy: React.FunctionComponent<any> = () => {
       <Wrapper>
         <Header>
           <Sigae />
-          <Title>Política de privacidade</Title>
+          <Title>Política do SiGAÊ</Title>
         </Header>
         <Overflow style={{textAlign: 'left'}} dangerouslySetInnerHTML={{__html: policy}} />
       </Wrapper>

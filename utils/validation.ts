@@ -1,4 +1,4 @@
-import {constainsChar} from './Utils'
+import {constainsChar} from './stringUtils'
 
 export const validateEmail = (email: string) => {
   if (email.length <= 0) return false

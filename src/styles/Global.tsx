@@ -69,6 +69,10 @@ const GlobalStyles = createGlobalStyle`
     height: 100vh;
   }
 
+  .react-toast-notifications__container {
+    z-index: 10000 !important;
+  }
+
   .MuiButtonBase-root {
     text-transform: none !important;
   }

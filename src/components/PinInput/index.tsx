@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import {ReactCodeInputProps} from 'react-code-input'
 import {InputStyled} from './styles'
+import {inServer} from '../../../utils/index'
 
 interface IPinInput extends ReactCodeInputProps {
   onAction?: (v: string) => void
@@ -23,7 +24,11 @@ const PinInput: React.FC<IPinInput> = ({onAction, ...props}) => {
     }
   }, [])
   return (
-    <InputStyled {...props} ref={input} />
+    <div suppressHydrationWarning>
+      {!inServer() && (
+        <InputStyled {...props} ref={input} />
+      )}
+    </div>
   )
 }
 

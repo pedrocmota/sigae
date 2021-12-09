@@ -2,8 +2,6 @@ import React, {useState} from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import {v4 as uuid} from 'uuid'
-
 interface IMain {
   children: React.ReactNode
 }

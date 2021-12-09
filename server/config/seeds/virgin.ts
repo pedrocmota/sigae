@@ -28,10 +28,10 @@ import {UsersModel} from '../../schemas/Users'
   await UsersModel.insertMany([
     {
       name: 'Administrador Geral',
-      preferred_name: 'Administrador Geral',
+      preferredName: 'Administrador Geral',
       userNumber: '123456',
       email: 'admin@gmail.com',
-      password: '$2a$12$.jkXS4kTtNL9hawpyI69s.GoqVU10SYM6A4s7wy7ae1ZGsMCml8Ai',
+      password: '$2a$12$.12iMUfpkgt5.3PrYo2iw.XKMnJ7diRts0CApp7H20R6wYYL9xxLa',
       campus: 'Nenhum',
       registrationCode: 'AZVDFDMR',
       type: 'ADMIN',

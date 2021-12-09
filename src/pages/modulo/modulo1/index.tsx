@@ -1,6 +1,5 @@
 import React from 'react'
-import Page from '../../../main'
-import {GetServerSideProps, NextComponentType, NextPageContext} from 'next'
+import {GetServerSideProps} from 'next'
 
 const Modulo1: React.FunctionComponent = () => {
   return (
@@ -10,7 +9,7 @@ const Modulo1: React.FunctionComponent = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
 

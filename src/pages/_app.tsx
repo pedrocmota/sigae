@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import {useRouter} from 'next/router'
 import Main from '../main/index'
 import Providers from '../providers'

@@ -1,7 +1,7 @@
 import React, {memo} from 'react'
 import {Container, Sigae, Copyright} from './styles'
 
-const Footer: React.FunctionComponent = (props) => {
+const Footer: React.FunctionComponent = () => {
   return (
     <Container>
       <Sigae>

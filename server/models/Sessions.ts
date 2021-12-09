@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt'
 import {SessionsModel} from '../schemas/Sessions'
 import {Types} from 'mongoose'
 

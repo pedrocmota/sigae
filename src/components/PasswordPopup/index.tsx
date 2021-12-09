@@ -2,7 +2,7 @@ import React, {useMemo, memo} from 'react'
 import Colorbar from '../Colorbar'
 import Requirement from './components/Requirement'
 import {useUI} from '../../providers/UIContext'
-import {passwordStrength} from '../../utils/Validation'
+import {passwordStrength} from '../../../utils/validation'
 import {FadeContainer, InternalContainer} from './styles'
 
 interface IPopupSenha {

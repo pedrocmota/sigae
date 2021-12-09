@@ -27,13 +27,13 @@ interface ILoginError {
   error:
   'UNKNOWN_USER' |
   'INCORRECT_PASSWORD' |
-  'ACCOUNT_NOT_REGISTERED' |
-  'INACTIVE_ACCOUNT' |
+  'UNREGISTERED_ACCOUNT' |
+  'UNCONFIRMED_ACCOUNT' |
   'DISABLED_ACCOUNT',
-  code?: string
+  registrationCode?: string
 }
 
-const Login: React.FunctionComponent<any> = (props) => {
+const Login: React.FunctionComponent<any> = () => {
   const [sending, setSending] = useState(false)
   const [error1, setError1] = useState(false)
   const [error2, setError2] = useState(false)
@@ -62,9 +62,9 @@ const Login: React.FunctionComponent<any> = (props) => {
         sendPost<ILoginParams, ILoginSuccess, ILoginError>('/sessions/login', {
           login: login,
           password: password
-        }, true, (response) => {
+        }, true, () => {
           setSending(false)
-          // history.push('/')
+          push('/')
         }, (response, status) => {
           setSending(false)
           if (status === 406) {
@@ -74,14 +74,14 @@ const Login: React.FunctionComponent<any> = (props) => {
             if (response.error === 'INCORRECT_PASSWORD') {
               return addToast('Senha incorreta', {appearance: 'error'})
             }
-            if (response.error === 'INACTIVE_ACCOUNT') {
+            if (response.error === 'UNREGISTERED_ACCOUNT') {
               return addToast('Essa matrícula ainda não está registrada', {appearance: 'error'})
             }
             if (response.error === 'DISABLED_ACCOUNT') {
               return addToast('Essa matrícula foi inativada', {appearance: 'error'})
             }
-            if (response.error === 'ACCOUNT_NOT_REGISTERED') {
-              push(`/registro/${response.code}/validar`)
+            if (response.error === 'UNCONFIRMED_ACCOUNT') {
+              return push(`/registro/${response.registrationCode}/validar`)
             }
             addToast(`Erro desconhecido (${status})`, {appearance: 'error'})
           } else {
@@ -112,11 +112,11 @@ const Login: React.FunctionComponent<any> = (props) => {
 
   return (
     <Container>
+      <Head>
+        <title>SiGAÊ - Login</title>
+      </Head>
       <Loading />
       <Center>
-        <Head>
-          <title>SiGAÊ - Login</title>
-        </Head>
         <Header>
           <img src={sigaeIcon} alt="Logo do SiGAÊ" />
           <h1>

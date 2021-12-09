@@ -29,18 +29,18 @@ export interface IInitialProps {
 export const getInitialProps = async (token: string | undefined) => {
   const session = await getSessionByID(token || '')
   if (session) {
-    const user = await UsersModel.findOne({_id: session.user || ''}).exec()
+    const user = await UsersModel.findOne({_id: session.user || ''})
     if (user) {
       return {
         user: {
           id: user.id,
           name: user.name,
-          preferredName: user.preferred_name,
+          preferredName: user.preferredName,
           userNumber: user.userNumber,
           email: user.email,
           campus: user.campus,
           course: user?.student?.course,
-          class: user?.student?.class,
+          class: user?.student?.classNumber,
           subjects: user?.teacher?.subjects,
           type: user.type
         },

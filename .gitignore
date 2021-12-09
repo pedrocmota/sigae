@@ -2,6 +2,7 @@ node_modules
 api/config/certificates/*
 !api/config/certificates/certificate.example.cert
 !api/config/certificates/certificate.example.key
+yarn-error.log
 .next
 .build
 .env

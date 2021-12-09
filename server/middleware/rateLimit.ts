@@ -1,5 +1,6 @@
 import expressSlowDown from 'express-slow-down'
 import expressRateLimit from 'express-rate-limit'
+import dayjs from 'dayjs'
 
 const ratesLimits = {
   onePerMinute: {
@@ -39,7 +40,14 @@ export const rateLimit = (type: keyof typeof ratesLimits) => {
   return expressRateLimit({
     windowMs: ratesLimits[type].timeout,
     max: ratesLimits[type].max,
-    message: JSON.stringify({error: 'TOO_MANY_REQUESTS'})
+    headers: false,
+    handler: (req, res) => {
+      const now = dayjs()
+      const resetTime = dayjs(req.rateLimit.resetTime)
+      const tryAgain = Math.abs(now.diff(resetTime, 'seconds'))
+      res.header('Try-again', tryAgain.toString())
+      res.sendStatus(429)
+    }
   })
 }
 

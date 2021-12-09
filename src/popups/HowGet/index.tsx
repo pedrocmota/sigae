@@ -10,7 +10,7 @@ const HowGet: React.FunctionComponent<any> = () => {
       <Wrapper>
         <Header>
           <Sigae />
-          <Title>Política de privacidade</Title>
+          <Title>Como conseguir um código?</Title>
         </Header>
         <Overflow style={{textAlign: 'left'}}>
           Lorem ipsum

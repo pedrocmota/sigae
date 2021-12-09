@@ -1,6 +1,5 @@
 import {Router} from 'express'
 import {requireParams} from '../middleware/requireParams'
-import {requireSession} from '../middleware/requireSession'
 import {slowDown, rateLimit} from '../middleware/rateLimit'
 import {sendChangePasswordEmail} from '../models/Mailer'
 import {getCode, deleteCode} from '../models/Codes'

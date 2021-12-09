@@ -8,7 +8,7 @@ import PrimaryButton from '../../components/PrimaryButton'
 import {InputErrorIcon, Spinner} from '../../components/icons'
 import ShowPassword from '../../components/ShowPassword'
 import PasswordPopup from '../../components/PasswordPopup'
-import {passwordStrength} from '../../utils/Validation'
+import {passwordStrength} from '../../../utils/validation'
 import {getCode} from '../../../server/models/Codes'
 import {
   Container,

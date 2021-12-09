@@ -6,7 +6,7 @@ import {CampusModel} from '../../schemas/Campus'
 import {CoursesModel} from '../../schemas/Courses'
 import {ClassesModel} from '../../schemas/Classes'
 import {SubjectsModel} from '../../schemas/Subjects'
-import {IUser, UsersModel} from '../../schemas/Users'
+import {UsersModel} from '../../schemas/Users'
 
 ((async () => {
 
@@ -467,10 +467,10 @@ import {IUser, UsersModel} from '../../schemas/Users'
   await UsersModel.insertMany([
     {
       name: 'Administrador Geral',
-      preferred_name: 'Administrador Geral',
+      preferredName: 'Administrador Geral',
       userNumber: '123456',
       email: 'admin@gmail.com',
-      password: '$2a$12$.jkXS4kTtNL9hawpyI69s.GoqVU10SYM6A4s7wy7ae1ZGsMCml8Ai',
+      password: '$2a$12$.12iMUfpkgt5.3PrYo2iw.XKMnJ7diRts0CApp7H20R6wYYL9xxLa',
       campus: 'Nenhum',
       registrationCode: 'AZVDFDMR',
       type: 'ADMIN',
@@ -492,10 +492,10 @@ import {IUser, UsersModel} from '../../schemas/Users'
     },
     {
       name: 'Ana Maria Melo',
-      preferred_name: 'Emmet Soffu',
+      preferredName: 'Emmet Soffu',
       userNumber: '481901',
       email: 'emmet@gmail.com',
-      password: '$2a$12$.jkXS4kTtNL9hawpyI69s.GoqVU10SYM6A4s7wy7ae1ZGsMCml8A',
+      password: '$2a$12$.12iMUfpkgt5.3PrYo2iw.XKMnJ7diRts0CApp7H20R6wYYL9xxLa',
       campus: 'Salvador',
       registrationCode: 'UJBSXPKG',
       type: 'TEACHER',
@@ -548,10 +548,10 @@ import {IUser, UsersModel} from '../../schemas/Users'
     },
     {
       name: 'Pedro Cerqueira Mota',
-      preferred_name: 'Pedro Mota',
+      preferredName: 'Pedro Mota',
       userNumber: '20d190058001',
       email: 'rafael_calvo@gmail.com',
-      password: '$2a$12$.jkXS4kTtNL9hawpyI69s.GoqVU10SYM6A4s7wy7ae1ZGsMCml8Ai',
+      password: '$2a$12$.12iMUfpkgt5.3PrYo2iw.XKMnJ7diRts0CApp7H20R6wYYL9xxLa',
       campus: 'Salvador',
       registrationCode: 'YTHUUJIS',
       type: 'STUDENT',
@@ -948,10 +948,10 @@ import {IUser, UsersModel} from '../../schemas/Users'
     },
     {
       name: 'Gabriel Xitado Oliveira',
-      preferred_name: 'Gabriel Xitado',
+      preferredName: 'Gabriel Xitado',
       userNumber: '20190058001',
       email: 'pedrocerqueiramota@hotmail.com',
-      password: '$2b$12$/0cQfn4NwnoNl94.u7dNcufJJhQIiqaN4Vz.Z53DcEdWdGjFcuv6e',
+      password: '$2a$12$.12iMUfpkgt5.3PrYo2iw.XKMnJ7diRts0CApp7H20R6wYYL9xxLa',
       campus: 'Salvador',
       registrationCode: 'BZRVPGNJ',
       type: 'STUDENT',

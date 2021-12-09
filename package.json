@@ -10,6 +10,7 @@
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build": "npm run build:next && npm run build:server && node build.js",
+    "lint": "eslint . --ext .ts,.tsx",
     "seeds:dev": "ts-node ./server/config/seeds/dev.ts",
     "seeds:virgin": "ts-node ./server/config/seeds/virgin.ts"
   },

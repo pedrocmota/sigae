@@ -35,8 +35,8 @@ export const useAPI = () => {
   }
 }
 
-type onReturn<T> = (value: T, statusCode: number) => void
-type onError<U> = (value: U, statusCode: number) => void
+type onReturn<T> = (value: T, statusCode: number, headers: any) => void
+type onError<U> = (value: U, statusCode: number, headers: any) => void
 
 export const APIProvider: React.FunctionComponent = (props) => {
   const {addToast} = useToasts()
@@ -65,15 +65,15 @@ export const APIProvider: React.FunctionComponent = (props) => {
         headers: {
           ...requireAuth && {session: session}
         }
-      }).then((response) => {
-        onReturn(response.data, response.status)
-      }).catch((response) => {
-        if (!response?.response?.status) {
+      }).then((req) => {
+        onReturn(req.data, req.status, req.headers)
+      }).catch((req) => {
+        if (!req?.response?.status) {
           addToast('Houve um erro de conexão', {appearance: 'error'})
           emitError('Erro de rede', `Erro de rede ao conectar à API: ${apiURL}`, 'ERROR')
-          onError('UNKNOWN' as any, 0)
+          onError('UNKNOWN' as any, 0, {})
         } else {
-          onError(response.response.data, response.response.status)
+          onError(req.response.data, req.response.status, req.response.headers)
         }
       })
     }, [])
@@ -88,15 +88,15 @@ export const APIProvider: React.FunctionComponent = (props) => {
         headers: {
           ...requireAuth && {session: session}
         }
-      }).then((response) => {
-        onReturn(response.data, response.status)
-      }).catch((response) => {
-        if (!response?.response?.status) {
+      }).then((req) => {
+        onReturn(req.data, req.status, req.headers)
+      }).catch((req) => {
+        if (!req?.response?.status) {
           addToast('Houve um erro de conexão', {appearance: 'error'})
           emitError('Erro de rede', `Erro de rede ao conectar à API: ${apiURL}`, 'ERROR')
-          onError('UNKNOWN' as any, 0)
+          onError('UNKNOWN' as any, 0, {})
         } else {
-          onError(response.response.data, response.response.status)
+          onError(req.response.data, req.response.status, req.response.headers)
         }
       })
     }, [])
@@ -107,15 +107,15 @@ export const APIProvider: React.FunctionComponent = (props) => {
         headers: {
           ...requireAuth && {session: session}
         }
-      }).then((response) => {
-        onReturn(response.data, response.status)
-      }).catch((response) => {
-        if (!response?.response?.status) {
+      }).then((req) => {
+        onReturn(req.data, req.status, req.headers)
+      }).catch((req) => {
+        if (!req?.response?.status) {
           addToast('Houve um erro de conexão', {appearance: 'error'})
           emitError('Erro de rede', `Erro de rede ao conectar à API: ${apiURL}`, 'ERROR')
-          onError('UNKNOWN' as any, 0)
+          onError('UNKNOWN' as any, 0, {})
         } else {
-          onError(response.response.data, response.response.status)
+          onError(req.response.data, req.response.status, req.response.headers)
         }
       })
     }, [])
@@ -127,15 +127,15 @@ export const APIProvider: React.FunctionComponent = (props) => {
         headers: {
           ...requireAuth && {session: session}
         }
-      }).then((response) => {
-        onReturn(response.data, response.status)
-      }).catch((response) => {
-        if (!response?.response?.status) {
+      }).then((req) => {
+        onReturn(req.data, req.status, req.headers)
+      }).catch((req) => {
+        if (!req?.response?.status) {
           addToast('Houve um erro de conexão', {appearance: 'error'})
           emitError('Erro de rede', `Erro de rede ao conectar à API: ${apiURL}`, 'ERROR')
-          onError('UNKNOWN' as any, 0)
+          onError('UNKNOWN' as any, 0, {})
         } else {
-          onError(response.response.data, response.response.status)
+          onError(req.response.data, req.response.status, req.response.headers)
         }
       })
     }, [])

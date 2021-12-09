@@ -1,5 +1,4 @@
 import React from 'react'
-import Page from '../../../main'
 
 const Modulo3: React.FunctionComponent = () => {
   return (

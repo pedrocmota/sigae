@@ -1,7 +1,7 @@
-import {constainsChar} from '../utils/stringUtils'
-import {getPreferredNames} from '../utils/stringUtils'
+import {constainsChar} from '../../utils/stringUtils'
+import {getPreferredNames} from '../../utils/parse'
 import {getUserByEmail} from '../models/Users'
-// import {getClassData, getAllSubjects} from '../models/Statics'
+import {getAllSubjects, getClass} from '../models/StaticsData'
 
 export const validatePreferredName = (full: string, preferred: string) => {
   const names = getPreferredNames(full)
@@ -28,17 +28,17 @@ export const validatePassword = (str: string) => {
   return true
 }
 
-// export const validateCourseAndClass = async (course: string, classe: string) => {
-//   const classData = await getClassData(classe)
-//   if (classData !== undefined) {
-//     return classData.course === course
-//   } else {
-//     return false
-//   }
-// }
+export const validateCourseAndClass = async (course: string, classe: string) => {
+  const classData = await getClass(classe)
+  if (classData) {
+    return classData.course === course
+  } else {
+    return false
+  }
+}
 
-// export const validateSubjects = async (subjects: string[]) => {
-//   const subjectsObject = await getAllSubjects()
-//   const allSubjects = subjectsObject.map(v => v.name)
-//   return allSubjects.some(v => subjects.includes(v))
-// }
+export const validateSubjects = async (subjects: string[]) => {
+  const subjectsObject = await getAllSubjects()
+  const allSubjects = subjectsObject.map(v => v.name)
+  return allSubjects.some(v => subjects.includes(v))
+}

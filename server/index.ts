@@ -8,18 +8,22 @@ import fileUpload from 'express-fileupload'
 import chalk from 'chalk'
 import dedent from 'dedent'
 import 'express-async-errors'
-import {loadConfig, loadCertificates, loadSMTP} from './loading'
+import {loadCertificates} from './loading'
 import {conn} from './database'
+import {loadEnv, loadSMTP} from './loading'
 
+loadEnv()
+
+export const mailer = loadSMTP()
 export const isDev = process.env.NODE_ENV !== 'production'
 export const nextServer = next({dev: isDev})
 export const handle = nextServer.getRequestHandler()
-export const env = loadConfig()
-export const mailer = loadSMTP()
 
 import Sessions from './routes/Sessions'
 import Configs from './routes/Configs'
 import Codes from './routes/Codes'
+import Register from './routes/Register'
+import Admin from './routes/Admin'
 
 import {getInitialProps} from './models/Configs'
 
@@ -35,7 +39,7 @@ conn.then(async () => {
   nextServer.prepare().then(() => {
     const app = express()
     const server = (() => {
-      if (env.EXPRESS_SSL_ENABLE) {
+      if (process.env.EXPRESS_SSL_ENABLE === 'true') {
         const cert = loadCertificates()
         if (cert === null) {
           console.error(chalk.red('Certificado não encontrado'))
@@ -49,11 +53,11 @@ conn.then(async () => {
 
     app.use(cookieParser())
     app.use(express.json({
-      limit: env.PAYLOAD_JSON_SIZE
+      limit: process.env.PAYLOAD_JSON_SIZE
     }))
     app.use(fileUpload({
       limits: {
-        fileSize: env.PAYLOAD_FILE_SIZE
+        fileSize: process.env.PAYLOAD_FILE_SIZE
       },
       abortOnLimit: true
     }))
@@ -64,6 +68,8 @@ conn.then(async () => {
     app.use('/api', Sessions)
     app.use('/api', Configs)
     app.use('/api', Codes)
+    app.use('/api', Register)
+    app.use('/api', Admin)
 
     app.all('/api/*', (req, res) => {
       res.status(404).send({error: 'NOT_FOUND'})
@@ -115,7 +121,7 @@ conn.then(async () => {
       return handle(req, res)
     })
 
-    server.listen(env.EXPRESS_PORT, () => {
+    server.listen(process.env.EXPRESS_PORT, () => {
       console.info(dedent(`
         ${chalk.green('[Server]')} Inicialização concluída com sucesso!
       `))

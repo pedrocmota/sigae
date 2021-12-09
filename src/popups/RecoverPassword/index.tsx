@@ -4,13 +4,14 @@ import Swal from 'sweetalert2'
 import Form from 'react-unform'
 import {Wrapper, Header, Sigae, Title} from '../PopupsComponents'
 import {showPopup} from '../Popup'
-import {validateEmail} from '../../utils/Validation'
+import {validateEmail} from '../../../utils/validation'
 import {contexts} from '../../providers/Globalizer'
 import {Container, Input} from './styles'
 import {InputErrorIcon} from '../../components/icons'
 
 const RecoverPassword: React.FunctionComponent<any> = () => {
   const [error, setError] = useState(false)
+
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.currentTarget.value
     const valido = validateEmail(email)
@@ -22,6 +23,7 @@ const RecoverPassword: React.FunctionComponent<any> = () => {
     const ok = document.getElementsByClassName('swal2-confirm')[0] as HTMLButtonElement
     ok.disabled = !valido
   }, [])
+
   return (
     <ThemeProvider theme={contexts.UIContext.theme}>
       <Wrapper>
@@ -100,9 +102,12 @@ export const showRecoverPassword = () => {
             </p>`
           })
         }, 1000)
-      }, (response, status) => {
+      }, (response, status, headers) => {
         if (status === 429) {
-          return addToast('Espere 1 minuto para mandar outro e-mail', {appearance: 'error'})
+          return addToast(
+            `Espere ${headers['try-again']} segundos para solicitar outro e-mail`,
+            {appearance: 'error'}
+          )
         } else {
           return addToast('Erro desconhecido', {appearance: 'error'})
         }
