@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import ErrorIcon from '@material-ui/icons/Error'
+import ErrorIcon from '@mui/icons-material/Error'
 import SpinnerSVG from '../../../public/assets/spinner.svg'
 
 interface IInputErrorIcon {

@@ -13,7 +13,7 @@ import PasswordPopup from '../../../components/PasswordPopup'
 import {Spinner} from '../../../components/icons'
 import {parsePreferredName} from '../../../../utils/parse'
 import {validateEmail, passwordStrength} from '../../../../utils/validation'
-import {Person, School, ImportContacts, AlternateEmail, VpnKey, Create} from '@material-ui/icons'
+import {Person, School, ImportContacts, AlternateEmail, VpnKey, Create} from '@mui/icons-material'
 import {
   Container,
   Top,

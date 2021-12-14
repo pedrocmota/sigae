@@ -6,7 +6,7 @@ import {ToastProvider} from 'react-toast-notifications'
 import {APIProvider} from './APIContext'
 import Globalizer from './Globalizer'
 
-const Providers: React.FunctionComponent = (props) => {
+const Providers: React.FunctionComponent<any> = (props) => {
   return (
     <DataProvider {...props}>
       <UIProvider {...props}>

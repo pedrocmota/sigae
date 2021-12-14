@@ -8,11 +8,10 @@ import fileUpload from 'express-fileupload'
 import chalk from 'chalk'
 import dedent from 'dedent'
 import 'express-async-errors'
+import './env'
 import {loadCertificates} from './loading'
 import {conn} from './database'
-import {loadEnv, loadSMTP} from './loading'
-
-loadEnv()
+import {loadSMTP} from './loading'
 
 export const mailer = loadSMTP()
 export const isDev = process.env.NODE_ENV !== 'production'
@@ -23,9 +22,10 @@ import Sessions from './routes/Sessions'
 import Configs from './routes/Configs'
 import Codes from './routes/Codes'
 import Register from './routes/Register'
+import User from './routes/User'
 import Admin from './routes/Admin'
 
-import {getInitialProps} from './models/Configs'
+import {getInitialProps} from './models/Props'
 
 console.info(dedent(`
   ${chalk.green('[Server]')} Iniciando servidor Node ${chalk.cyan(`${process.version}`)}
@@ -69,6 +69,7 @@ conn.then(async () => {
     app.use('/api', Configs)
     app.use('/api', Codes)
     app.use('/api', Register)
+    app.use('/api', User)
     app.use('/api', Admin)
 
     app.all('/api/*', (req, res) => {

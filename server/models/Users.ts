@@ -20,13 +20,20 @@ export const getUserByRegisterCode = async (registerCode: string) => {
   return await UsersModel.findOne({registrationCode: registerCode})
 }
 
+
+export const getUserPermissions = async (userID: string) => {
+  if (!Types.ObjectId.isValid(userID)) return null
+  return (await UsersModel.findById(userID).select({
+    permissions: 1
+  }))?.permissions
+}
+
 export const setUserPassword = async (userID: string, password: string) => {
   const hash = await bcrypt.hash(password, parseInt(process.env.BCRYPT_COST))
   return await UsersModel.updateOne({_id: userID}, {
     password: hash
   })
 }
-
 export const setUserStatus = (userID: string, status: user_states) => {
   return UsersModel.updateOne({_id: userID}, {
     status: status

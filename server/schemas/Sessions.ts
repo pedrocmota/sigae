@@ -2,6 +2,7 @@ import {mongoose} from '../database'
 import {user_types} from '../types/Global'
 
 export interface ISessions {
+  token: string,
   user: string,
   userType: user_types,
   agent: string,

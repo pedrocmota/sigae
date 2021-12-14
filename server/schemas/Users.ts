@@ -19,7 +19,14 @@ export interface IUser {
   teacher: {
     subjects: string[]
   },
+  permissions: IPermissions,
   configs: IUserConfig
+}
+
+export interface IPermissions {
+  createClasses: boolean,
+  enterClasses: boolean,
+  changeAvatar: boolean
 }
 
 export interface IUserConfig {
@@ -78,6 +85,23 @@ const schema = new mongoose.Schema<IUser>({
     subjects: {
       type: [String],
       default: undefined
+    }
+  },
+  permissions: {
+    createClasses: {
+      type: Boolean,
+      default: function () {
+        const db = this as unknown as IUser | undefined
+        return db?.type === 'TEACHER' || db?.type === 'ADMIN' ? true : false
+      }
+    },
+    enterClasses: {
+      type: Boolean,
+      default: true
+    },
+    changeAvatar: {
+      type: Boolean,
+      default: true
     }
   },
   configs: {

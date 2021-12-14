@@ -22,8 +22,8 @@
     "jsx": "preserve",
     "incremental": true,
     "typeRoots": [
-      "./server/types",
-    ]
+      "./server/types"
+    ],
   },
   "exclude": [
     "node_modules",

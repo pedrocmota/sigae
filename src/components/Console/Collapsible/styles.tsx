@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components'
-import {ArrowRight} from '@material-ui/icons'
+import {ArrowRight} from '@mui/icons-material'
 import {msgType} from '../../../providers/ConsoleContext'
 
 interface IContainer {

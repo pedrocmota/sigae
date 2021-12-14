@@ -11,7 +11,7 @@ const NotFoundPage: React.FunctionComponent = () => {
         <title>Página desconhecida</title>
       </Head>
       <h1>404</h1>
-      <span>Você deve estar perdido no espaço tempo</span>
+      <div>Você deve estar perdido no espaço tempo</div>
       <Button onClick={() => {
         push('/')
       }}>

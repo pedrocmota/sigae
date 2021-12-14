@@ -1,6 +1,7 @@
-import {UsersModel} from '../schemas/Users'
 import {getSessionByID} from './Sessions'
+import {getUserByID} from './Users'
 import {themeNames} from '../types/Global'
+import {IPermissions} from '../schemas/Users'
 
 export interface IUserInitialProps {
   id: string,
@@ -16,10 +17,12 @@ export interface IUserInitialProps {
 }
 
 export interface IInitialProps {
+  auth: boolean,
   user?: IUserInitialProps,
   configs?: {
     theme: themeNames
   },
+  permissions?: IPermissions,
   cookieTheme?: themeNames,
   misc?: {
     newEmail?: string
@@ -29,9 +32,10 @@ export interface IInitialProps {
 export const getInitialProps = async (token: string | undefined) => {
   const session = await getSessionByID(token || '')
   if (session) {
-    const user = await UsersModel.findOne({_id: session.user || ''})
+    const user = await getUserByID(session.user)
     if (user) {
       return {
+        auth: true,
         user: {
           id: user.id,
           name: user.name,
@@ -44,12 +48,17 @@ export const getInitialProps = async (token: string | undefined) => {
           subjects: user?.teacher?.subjects,
           type: user.type
         },
-        configs: user?.configs
-      }
+        configs: user?.configs,
+        permissions: user.permissions
+      } as IInitialProps
     } else {
-      return {}
+      return {
+        auth: false
+      }
     }
   } else {
-    return {}
+    return {
+      auth: false
+    }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 import {ISides} from '../../types/components'
 
 interface IShowPassword extends React.HTMLAttributes<HTMLDivElement>, ISides {

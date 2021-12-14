@@ -1,17 +1,14 @@
 import {Request, Response, NextFunction} from 'express'
 import {getSessionByID} from '../models/Sessions'
-import {user_types} from '../types/Global'
 
-export const requireSession = (permissions?: user_types[]) => {
+export const requireSession = () => {
   return async (req: Request, res: Response, next: NextFunction) => {
-    if (typeof req.headers.session === 'string') {
-      const id = req.headers.session
-      const session = await getSessionByID(id)
+    const sessionToken = req.headers?.session || req.cookies?.session || undefined
+    if (typeof sessionToken === 'string') {
+      const session = await getSessionByID(sessionToken)
       if (session) {
-        if (permissions && !permissions.includes(session.userType)) {
-          return res.status(403).send({error: 'ACCESS_DENIED'})
-        }
         req.session = {
+          token: session.id,
           user: session.user,
           userType: session.userType,
           agent: session.agent,
@@ -20,10 +17,16 @@ export const requireSession = (permissions?: user_types[]) => {
         }
         next()
       } else {
+        res.clearCookie('session')
         return res.status(401).send({error: 'INVALID_SESSION'})
       }
     } else {
-      return res.status(401).send({error: 'MISSING_SESSION'})
+      res.clearCookie('session')
+      return res.status(401).send({error: 'INVALID_SESSION'})
     }
   }
 }
+
+// if (props?.userTypes && props.userTypes.includes(session.userType)) {
+//   return res.status(403).send({error: 'ACCESS_DENIED'})
+// }

@@ -1,6 +1,6 @@
 const path = require('path')
 const withImages = require('next-images')
-// const withSvgr = require('next-svgr')
+const Package = require('./package.json')
 
 /**
  * @type {import('next').NextConfig}
@@ -19,6 +19,12 @@ module.exports = withImages({
   },
   esModule: true,
   exclude: path.resolve(__dirname, 'public/assets/'),
+
   inlineImageLimit: 18384,
-  distDir: process.env.npm_lifecycle_event === 'build:next' ? '.build/.next' : '.next'
+
+  distDir: process.env.npm_lifecycle_event === 'build:next' ? '.build/.next' : '.next',
+  publicRuntimeConfig: {
+    version: Package.version,
+    repository: Package.repository.url
+  }
 })

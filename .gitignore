@@ -2,6 +2,8 @@ node_modules
 api/config/certificates/*
 !api/config/certificates/certificate.example.cert
 !api/config/certificates/certificate.example.key
+server/database/profile/*
+!server/database/profile/.gitkeep
 yarn-error.log
 .next
 .build

@@ -63,8 +63,7 @@ const Login: React.FunctionComponent<any> = () => {
           login: login,
           password: password
         }, true, () => {
-          setSending(false)
-          push('/')
+          window.location.href = '/'
         }, (response, status) => {
           setSending(false)
           if (status === 406) {
@@ -95,11 +94,7 @@ const Login: React.FunctionComponent<any> = () => {
   }, [])
 
   const matriculaKeyUp = useCallback((e) => {
-    const size = e.currentTarget?.value?.length
     if (e.key === 'Enter') {
-      inputPassword.current?.focus()
-    }
-    if (size === 11) {
       inputPassword.current?.focus()
     }
   }, [])
@@ -127,7 +122,7 @@ const Login: React.FunctionComponent<any> = () => {
         </Header>
         <Main>
           <Form name="login" method="POST">
-            <LoginInput id="login" placeholder="Sua matrícula" type="tel" onKeyUp={matriculaKeyUp}
+            <LoginInput id="login" placeholder="Sua matrícula" onKeyUp={matriculaKeyUp}
               error={error1} ref={inputLogin} onFocus={() => setError1(false)}>
               <InputErrorIcon visible={error1 ? 100 : 0} />
             </LoginInput>

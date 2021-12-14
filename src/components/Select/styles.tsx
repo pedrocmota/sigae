@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import {IMargin} from '../../types/components'
 
 export const Container = styled.div<IMargin>`

@@ -1,10 +1,14 @@
 {
   "name": "sigae",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "server/index.ts",
   "author": "Pedro Mota e João Costa",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedrocmota/sigae"
+  },
   "scripts": {
     "dev": "nodemon server/index.ts",
     "build:server": "tsc --project tsconfig.server.json",
@@ -18,8 +22,8 @@
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
+    "@mui/icons-material": "^5.2.1",
     "@mui/material": "^5.2.2",
     "axios": "^0.24.0",
     "babel-plugin-styled-components": "^2.0.2",
@@ -45,6 +49,7 @@
     "next-images": "^1.8.2",
     "nodemailer": "^6.7.0",
     "nodemailer-plugin-inline-base64": "^2.1.1",
+    "query-string": "^7.0.1",
     "randomstring": "^1.2.1",
     "react": "^17.0.2",
     "react-code-input": "^3.10.1",

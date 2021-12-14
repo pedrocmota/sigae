@@ -12,7 +12,7 @@ export const Container = styled.div`
     font-size: 100px;
     color: ${props => props.theme.pages.notFound.foreground};
   }
-  span {
+  div {
     font-size: 23px;
     text-align: center;
     color: ${props => props.theme.pages.notFound.foreground};
@@ -20,7 +20,7 @@ export const Container = styled.div`
   button {
     width: 300px;
     margin-top: 20px;
-    span {
+    div {
       font-size: 16px;
     }
   }

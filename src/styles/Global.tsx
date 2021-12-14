@@ -42,11 +42,6 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     transition: background-color 200ms, color 200ms;
   }
-
-  @font-face {
-    font-family: 'Comfortaa';
-    src: local('Comfortaa'), url('/fonts/Comfortaa-Regular.woff') format('woff');
-  }
   
   body {
     margin: 0;

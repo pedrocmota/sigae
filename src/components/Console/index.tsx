@@ -9,7 +9,7 @@ import {TransitionProps} from '@material-ui/core/transitions'
 import Collapsible from './Collapsible'
 import {Dialog, ConsoleBar, Container, EmptyText} from './styles'
 import {useConsole} from '../../providers/ConsoleContext'
-import {Delete, Close, Brush} from '@material-ui/icons'
+import {Delete, Close, Brush} from '@mui/icons-material'
 import siIcon from '../../../public/si.svg'
 import {useUI} from '../../providers/UIContext'
 

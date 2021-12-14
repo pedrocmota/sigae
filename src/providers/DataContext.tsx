@@ -1,29 +1,29 @@
 import React, {useState} from 'react'
 import {createContext, useContextSelector} from 'use-context-selector'
-import {IInitialProps, IUserInitialProps} from '../../server/models/Configs'
+import {IInitialProps} from '../../server/models/Props'
 
 export interface IDataContext {
-  userData: IUserInitialProps | undefined,
-  setUserData: React.Dispatch<React.SetStateAction<IUserInitialProps | undefined>>
+  data: IInitialProps,
+  setData: React.Dispatch<React.SetStateAction<IInitialProps>>
 }
 
 export const DataContext = createContext<IDataContext>({} as IDataContext)
 
 export const useData = () => {
-  const userData = useContextSelector(DataContext, (v) => v.userData)
-  const setUserData = useContextSelector(DataContext, (v) => v.setUserData)
+  const data = useContextSelector(DataContext, (v) => v.data)
+  const setData = useContextSelector(DataContext, (v) => v.setData)
   return {
-    userData,
-    setUserData
+    data,
+    setData
   }
 }
 
 export const DataProvider: React.FunctionComponent<IInitialProps> = ({children, ...props}) => {
-  const [userData, setUserData] = useState(props.user)
+  const [data, setData] = useState(props)
   return (
     <DataContext.Provider value={{
-      userData,
-      setUserData
+      data,
+      setData
     }}>
       {children}
     </DataContext.Provider>

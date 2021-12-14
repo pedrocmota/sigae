@@ -13,6 +13,7 @@ interface ILoading {
 const Loading: React.FunctionComponent<ILoading> = (props) => {
   const [visible, setVisible] = useState(true)
   const {themeName} = useUI()
+
   useEffect(() => {
     if (props.visible === undefined) {
       const counter = setTimeout(() => {
@@ -23,6 +24,7 @@ const Loading: React.FunctionComponent<ILoading> = (props) => {
       }
     }
   }, [])
+
   return (
     <Fade className="loadingFade" visible={props.visible !== undefined ? props.visible : visible} timer={600}
       style={{position: 'absolute', zIndex: 9000}}>
