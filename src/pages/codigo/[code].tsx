@@ -60,7 +60,7 @@ const Code: React.FunctionComponent<ICode> = ({valid}) => {
     sendPut<ISendPasswordParams, any, ISendPasswordError>('/codes/password/change', {
       code: query.code as string,
       password: password1
-    }, false, () => {
+    }, () => {
       push('/login')
       return addToast('Senha alterada com sucesso!', {appearance: 'success'})
     }, (response) => {

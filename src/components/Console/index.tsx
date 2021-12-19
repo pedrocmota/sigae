@@ -76,7 +76,7 @@ const Console: React.FunctionComponent = () => {
           <Collapsible {...item} key={uuid4()} />
         ))}
         {entries.length == 0 && (
-          <EmptyText>O console, por enquanto, está vazio.</EmptyText>
+          <EmptyText>O console está vazio</EmptyText>
         )}
       </Container>
     </Dialog>

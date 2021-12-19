@@ -5,7 +5,7 @@ export const Container = styled.header`
   align-items: center;
   width: 100%;
   height: 65px;
-  background-color: #32323d;
+  background-color: ${props => props.theme.pages.main.header.background};
 `
 
 export const Left = styled.div`
@@ -44,7 +44,7 @@ export const HamburguerContainer = styled.a`
   .hamburger-inner,
   .hamburger-inner:before,
   .hamburger-inner:after {
-    background-color: #c1c1c4 !important;
+    background-color: ${props => props.theme.pages.main.header.hamburger} !important;
   }
   @media (min-width: 944px) {
     display: none;

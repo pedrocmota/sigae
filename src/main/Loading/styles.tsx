@@ -7,6 +7,9 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: #f1f2f3 !important;
+  background-color: ${props => props.theme.pages.main.loading.background} !important;
   z-index: 500;
+  svg {
+    color: ${props => props.theme.pages.main.loading.spinner};
+  }
 `

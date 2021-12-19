@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {createContext, useContextSelector} from 'use-context-selector'
 import {Container, Top, Bottom, Arrow} from './styles'
 import SVGIcon from '@mui/material/SvgIcon'

@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs'
 
 export const getProfile = async (userID: string) => {
-  const dir = path.resolve(__dirname, '../database/profile')
+  const dir = path.resolve(__dirname, '../static/database/profile')
   var file = (() => {
     if (fs.existsSync(`${dir}/${userID}.jpg`)) {
       return `${dir}/${userID}.jpg`

@@ -19,27 +19,27 @@ export const LinkContainer = styled.a<ILinkContainer>`
   white-space: nowrap;
   text-decoration: none;
   &:hover {
-    background-color: #43435a;
+    background-color: ${props => props.theme.pages.main.sidebar.row.hover.background};
     > * {
-      color: #7f94c5;
+      color: ${props => props.theme.pages.main.sidebar.row.hover.foreground};
     }
   }
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 1px 1px #5c67bc;
+    box-shadow: 0 0 1px 1px ${props => props.theme.pages.main.sidebar.row.focus};
   }
   svg {
     font-size: 24px;
-    color: #ffffff;
+    color: ${props => props.theme.pages.main.sidebar.row.foreground};
   }
   p {
     font-size: 18px;
-    color: #ffffff;
+    color: ${props => props.theme.pages.main.sidebar.row.foreground};
     padding-left: 10px;
   }
   ${({active}) => active && css`
     > * {
-      color: #8dd45d !important;
+      color: ${props => props.theme.pages.main.sidebar.row.active} !important;
     }
   `}
 `

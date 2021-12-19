@@ -6,10 +6,10 @@ import inline from 'nodemailer-plugin-inline-base64'
 export const loadCertificates = () => {
   try {
     const cert = fs.readFileSync(
-      path.join(process.cwd(), `/server/config/certificates/${process.env.EXPRESS_SSL_CERT}`), 'utf-8'
+      path.join(process.cwd(), `/server/static/certificates/${process.env.EXPRESS_SSL_CERT}`), 'utf-8'
     )
     const key = fs.readFileSync(
-      path.join(process.cwd(), `/server/config/certificates/${process.env.EXPRESS_SSL_KEY}`), 'utf-8'
+      path.join(process.cwd(), `/server/static/certificates/${process.env.EXPRESS_SSL_KEY}`), 'utf-8'
     )
     return {
       cert: cert,

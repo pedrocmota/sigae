@@ -216,12 +216,63 @@ declare module 'styled-components' {
       notFound: {
         background: string,
         foreground: string
+      },
+      main: {
+        header: {
+          background: string,
+          hamburger: string
+        },
+        loading: {
+          background: string,
+          spinner: string
+        },
+        footer: {
+          background: string,
+          sigae: string,
+          copyright: string,
+          link: string,
+          linkHover: string
+        },
+        sidebar: {
+          background: string,
+          infoBackground: string,
+          profile: {
+            defaultBackground: string,
+            zoomed: string
+          },
+          name: string,
+          row: {
+            foreground: string,
+            hover: {
+              background: string,
+              foreground: string,
+            },
+            focus: string,
+            active: string
+          },
+          node: {
+            foreground: string,
+            hover: {
+              background: string,
+              foreground: string
+            },
+            open: {
+              background: string,
+              foreground: string,
+            },
+            focus: string,
+            active: string
+          }
+        },
+        moduleController: {
+          background: string,
+          color: string,
+          hover: string
+        }
       }
     },
     popups: {
-      loading: {
-        spinner: string
-      }
+
     }
   }
 }

@@ -16,23 +16,23 @@ export const Container = styled.div<IOpen>`
   user-select: none;
   transition: background 130ms, color 130ms;
   &:hover {
-    background-color: #43435a;
+    background-color: ${props => props.theme.pages.main.sidebar.node.hover.background};
   }
   ${({open}) => open && css`
-    color: #7f94c5;
-    background-color: #32323d;
+    background-color: ${props => props.theme.pages.main.sidebar.node.open.background};
+    color: ${props => props.theme.pages.main.sidebar.node.open.foreground};
   `}
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 1px 1px #5c67bc;
+    box-shadow: 0 0 1px 1px ${props => props.theme.pages.main.sidebar.node.focus};
   }
   svg {
     font-size: 24px;
-    color: #ffffff;
+    color: ${props => props.theme.pages.main.sidebar.node.foreground};
   }
   p {
     font-size: 18px;
-    color: #ffffff;
+    color: ${props => props.theme.pages.main.sidebar.node.foreground};
     padding-left: 10px;
     white-space: nowrap;
   }
@@ -46,12 +46,12 @@ export const Top = styled.div<IOpen>`
   padding-left: 10px;
   &:hover {
     > * {
-      color: #7f94c5;
+      color: ${props => props.theme.pages.main.sidebar.node.hover.foreground};
     }
   }
   ${({open}) => open && css`
     > * {
-      color: #7f94c5 !important;
+      color: ${props => props.theme.pages.main.sidebar.node.open.foreground} !important;
     }
   `}
 `

@@ -211,12 +211,62 @@ const Light: DefaultTheme = {
     notFound: {
       background: '#f1f2f3',
       foreground: '#3b3b4b'
+    },
+    main: {
+      header: {
+        background: '#32323d',
+        hamburger: '#c1c1c4'
+      },
+      loading: {
+        background: '#f1f2f3',
+        spinner: '#434c9c'
+      },
+      footer: {
+        background: '#4a5058',
+        sigae: '#a9bff1',
+        copyright: '#f0f8ff',
+        link: '#44dd68',
+        linkHover: '#28a745'
+      },
+      sidebar: {
+        background: '#3b3b4b',
+        infoBackground: '#454555',
+        profile: {
+          defaultBackground: '#c5c5c5',
+          zoomed: '#1b1a1a'
+        },
+        name: '#f5f5f5',
+        row: {
+          foreground: '#ffffff',
+          hover: {
+            background: '#43435a',
+            foreground: '#7f94c5'
+          },
+          focus: '#5c67bc',
+          active: '#8dd45d'
+        },
+        node: {
+          foreground: '#ffffff',
+          hover: {
+            background: '#43435a',
+            foreground: '#7f94c5'
+          },
+          open: {
+            background: '#32323d',
+            foreground: '#7f94c5'
+          },
+          focus: '#5c67bc',
+          active: '#8dd45d'
+        }
+      },
+      moduleController: {
+        background: '#ffffff',
+        color: '#5c66bc',
+        hover: '#8d98f3'
+      }
     }
   },
   popups: {
-    loading: {
-      spinner: '#5C67BC'
-    }
   }
 }
 

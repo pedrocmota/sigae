@@ -13,7 +13,7 @@ export const Container = styled.aside<IContainer>`
   left: 0;
   bottom: 100px;
   height: calc(100% - 65px);
-  background-color: #3b3b4b;
+  background-color: ${props => props.theme.pages.main.sidebar.background};
   overflow-y: hidden;
   z-index: 900;
   transition: width 300ms !important;
@@ -22,7 +22,6 @@ export const Container = styled.aside<IContainer>`
    rgba(0, 0, 0, 0.14), 0 1px 5px 0 
    rgba(0, 0, 0, 0.12), 0 3px 1px -2px 
    rgba(0, 0, 0, 0.20);
-
   ${({open}) => !open && css`
     width: 0px;
   `}
@@ -41,7 +40,7 @@ export const InfoContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 180px;
-  background-color: #454555;
+  background-color: ${props => props.theme.pages.main.sidebar.infoBackground};
 `
 
 export const Avatar = styled.img`
@@ -53,7 +52,7 @@ export const Avatar = styled.img`
   max-height: 100px;
   border-radius: 50%;
   cursor: zoom-in;
-  background-color: #c5c5c5;
+  background-color: ${props => props.theme.pages.main.sidebar.profile.defaultBackground};
 `
 
 export const Name = styled.span`
@@ -61,7 +60,7 @@ export const Name = styled.span`
   font-family: Verdana, sans-serif;
   text-align: center;
   font-size: 25px;
-  color: #f5f5f5;
+  color: ${props => props.theme.pages.main.sidebar.name};
   margin-top: 18px;
   padding-left: 10px;
   padding-right: 10px;

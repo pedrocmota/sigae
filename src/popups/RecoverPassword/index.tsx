@@ -85,7 +85,7 @@ export const showRecoverPassword = () => {
     if (result.isConfirmed) {
       sendPost<IRecoveryParams, ISuccess, IError>('/codes/password/send', {
         email: input.value
-      }, false, () => {
+      }, () => {
         setTimeout(() => {
           Swal.fire({
             icon: 'info',

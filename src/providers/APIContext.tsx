@@ -1,22 +1,21 @@
 import React, {useCallback, useMemo} from 'react'
 import {createContext, useContextSelector} from 'use-context-selector'
 import axios from 'axios'
-import cookie from 'js-cookie'
 import {useToasts} from 'react-toast-notifications'
 import {useConsole} from './ConsoleContext'
 
 export interface IAPIContext {
   sendGet: <Y, T, U>(
-    path: string, data: Y, auth: boolean, onReturn: onReturn<T>, onError: onError<U>
+    path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>
   ) => void,
   sendPost: <Y, T, U>(
-    path: string, data: Y, auth: boolean, onReturn: onReturn<T>, onError: onError<U>
+    path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>
   ) => void,
   sendPut: <Y, T, U>(
-    path: string, data: Y, auth: boolean, onReturn: onReturn<T>, onError: onError<U>
+    path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>
   ) => void,
   sendDelete: <Y, T, U>(
-    path: string, data: Y, auth: boolean, onReturn: onReturn<T>, onError: onError<U>
+    path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>
   ) => void
 }
 
@@ -50,21 +49,11 @@ export const APIProvider: React.FunctionComponent = (props) => {
     }
   }, [])
 
-  const session = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      return cookie.get('session')
-    } else {
-      return undefined
-    }
-  }, [])
-
   const sendGet = useCallback(
-    <Y, T, U>(path: string, data: Y, requireAuth: boolean, onReturn: onReturn<T>, onError: onError<U>) => {
+    <Y, T, U>(path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>) => {
       axios.get(`${apiURL}${path}`, {
         params: data,
-        headers: {
-          ...requireAuth && {session: session}
-        }
+        withCredentials: true
       }).then((req) => {
         onReturn(req.data, req.status, req.headers)
       }).catch((req) => {
@@ -79,15 +68,9 @@ export const APIProvider: React.FunctionComponent = (props) => {
     }, [])
 
   const sendPost = useCallback(
-    <Y, T, U>(path: string, data: Y, requireAuth: boolean, onReturn: onReturn<T>, onError: onError<U>) => {
+    <Y, T, U>(path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>) => {
       axios.post(`${apiURL}${path}`, data, {
-        ...requireAuth && {
-          withCredentials: true
-        },
-        withCredentials: true,
-        headers: {
-          ...requireAuth && {session: session}
-        }
+        withCredentials: true
       }).then((req) => {
         onReturn(req.data, req.status, req.headers)
       }).catch((req) => {
@@ -102,11 +85,9 @@ export const APIProvider: React.FunctionComponent = (props) => {
     }, [])
 
   const sendPut = useCallback(
-    <Y, T, U>(path: string, data: Y, requireAuth: boolean, onReturn: onReturn<T>, onError: onError<U>) => {
+    <Y, T, U>(path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>) => {
       axios.put(`${apiURL}${path}`, data, {
-        headers: {
-          ...requireAuth && {session: session}
-        }
+        withCredentials: true
       }).then((req) => {
         onReturn(req.data, req.status, req.headers)
       }).catch((req) => {
@@ -121,12 +102,10 @@ export const APIProvider: React.FunctionComponent = (props) => {
     }, [])
 
   const sendDelete = useCallback(
-    <Y, T, U>(path: string, data: Y, requireAuth: boolean, onReturn: onReturn<T>, onError: onError<U>) => {
+    <Y, T, U>(path: string, data: Y, onReturn: onReturn<T>, onError: onError<U>) => {
       axios.delete(`${apiURL}${path}`, {
         data: data,
-        headers: {
-          ...requireAuth && {session: session}
-        }
+        withCredentials: true
       }).then((req) => {
         onReturn(req.data, req.status, req.headers)
       }).catch((req) => {

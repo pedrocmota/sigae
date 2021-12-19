@@ -59,7 +59,7 @@ const RegisterValidation: React.FunctionComponent<IRegisterValidation> = (props)
     setSending(true)
     sendPost<IValidateParams, any, IValidateError>(`/registration/${props.code}/validation/confirm`, {
       emailCode: emailCode
-    }, false, () => {
+    }, () => {
       setSending(false)
       addToast('Conta registrada com sucesso!', {appearance: 'success'})
       push('/login')
@@ -79,7 +79,7 @@ const RegisterValidation: React.FunctionComponent<IRegisterValidation> = (props)
   }
 
   const resendEmail = () => {
-    sendPost<any, any, IResendEmailError>(`/registration/${props.code}/resend`, {}, false, () => {
+    sendPost<any, any, IResendEmailError>(`/registration/${props.code}/resend`, {}, () => {
       addToast('E-mail enviado com sucesso', {appearance: 'success'})
     }, (response, status, headers) => {
       if (response.error === 'INVALID_USER') {
@@ -101,7 +101,7 @@ const RegisterValidation: React.FunctionComponent<IRegisterValidation> = (props)
   const cancelRegistration = () => {
     showConfirmation((confirmed) => {
       if (confirmed) {
-        sendDelete<any, any, ICancelError>(`/registration/${props.code}/cancel`, {}, false, () => {
+        sendDelete<any, any, ICancelError>(`/registration/${props.code}/cancel`, {}, () => {
           addToast('Inscrição cancelada com sucesso!', {appearance: 'success'})
           push('/registro')
         }, (response, status) => {

@@ -62,7 +62,7 @@ const Login: React.FunctionComponent<any> = () => {
         sendPost<ILoginParams, ILoginSuccess, ILoginError>('/sessions/login', {
           login: login,
           password: password
-        }, true, () => {
+        }, () => {
           window.location.href = '/'
         }, (response, status) => {
           setSending(false)

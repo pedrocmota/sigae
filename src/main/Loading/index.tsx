@@ -5,7 +5,7 @@ import Spinner from '../../../public/assets/spinner.svg'
 const ModuloLoading: React.FC = () => {
   return (
     <Container>
-      <Spinner color={'#434c9c'} />
+      <Spinner />
     </Container>
   )
 }

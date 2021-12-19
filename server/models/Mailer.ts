@@ -8,7 +8,7 @@ import {mailer} from '../index'
 const sendMail = async <T extends unknown>(
   to: string[], title: string, htmlFile: emails_types, props: T
 ) => {
-  let html = fs.readFileSync(path.resolve(__dirname, `../config/static/emails/${htmlFile}.html`)).toString()
+  let html = fs.readFileSync(path.resolve(__dirname, `../static/emails/${htmlFile}.html`)).toString()
   Object.keys(props as any).forEach((variable) => {
     const value = props[variable] as string
     html = html.replace(`{${variable}}`, value)

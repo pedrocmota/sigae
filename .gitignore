@@ -1,9 +1,10 @@
 node_modules
-api/config/certificates/*
-!api/config/certificates/certificate.example.cert
-!api/config/certificates/certificate.example.key
-server/database/profile/*
-!server/database/profile/.gitkeep
+api/static/certificates/*
+!api/static/certificates/certificate.example.cert
+!api/static/certificates/certificate.example.key
+server/static/database/profile/*
+!server/static/database/profile/.gitkeep
+!server/static/database/profile/unknown.jpg
 yarn-error.log
 .next
 .build

@@ -123,7 +123,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
           ...props.type === 'TEACHER' && {
             subjects: subjects
           }
-        }, false, () => {
+        }, () => {
           push(`/registro/${props.code}/validar`)
         }, (response, status) => {
           setSending(false)

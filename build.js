@@ -5,25 +5,27 @@ const package = require('./package.json')
 const envFile = '.build/.env'
 const packageFile = '.build/package.json'
 const publicFolder = '.build/public'
-const certificatesFolder = '.build/server/certificates'
+const staticFolder = '.build/server/static'
 
-if (!fs.existsSync(envFile)) {
-  fs.copyFileSync('.env', envFile)
+fs.copyFileSync('.env', envFile)
+
+package.main = '/server/index.js'
+package.scripts = {
+  start: 'NODE_ENV=production node server/index.js'
 }
+delete package.devDependencies
+fs.writeFileSync(packageFile, JSON.stringify(package, null, 2))
 
-if (!fs.existsSync(packageFile)) {
-  package.main = '/server/index.js'
-  package.scripts = {
-    start: 'NODE_ENV=production node server/index.js'
+fsExtra.copySync('./server/static', staticFolder, {
+  filter: (file) => {
+    if (file.endsWith('.ts') || file.endsWith('.gitkeep')) {
+      return false
+    }
+    if (file == 'server\\static\\seeds') {
+      return false
+    }
+    return true
   }
-  delete package.devDependencies
-  fs.writeFileSync(packageFile, JSON.stringify(package, null, 2))
-}
+})
 
-if (!fs.existsSync(certificatesFolder)) {
-  fs.mkdirSync(certificatesFolder)
-}
-
-if (!fs.existsSync(publicFolder)) {
-  fsExtra.copySync('public', publicFolder)
-}
+fsExtra.copySync('public', publicFolder)

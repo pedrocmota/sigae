@@ -128,4 +128,9 @@ conn.then(async () => {
       `))
     })
   })
+}).catch((err) => {
+  console.error(dedent(`
+    ${chalk.red('[Server]')} Erro ao conectar com o banco de dados
+  `))
+  throw err
 })

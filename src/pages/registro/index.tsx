@@ -26,7 +26,7 @@ const RegisterForm: React.FunctionComponent = () => {
 
   const checkCode = useCallback(() => {
     setSending(true)
-    sendGet(`/registration/${code}/check`, {}, false, () => {
+    sendGet(`/registration/${code}/check`, {}, () => {
       setSending(false)
       push(`/registro/${code}`)
     }, (response, status) => {

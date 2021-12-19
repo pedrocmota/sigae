@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
-import {ModuleSubContainer} from './styles'
+import {ModuleContainer} from './styles'
 import {useRouter} from 'next/router'
 import {useMain} from '../index'
 
-interface IModule {
+interface IModuleController {
   children: React.ReactNode
 }
 
-const Module: React.FunctionComponent<IModule> = (props) => {
+const ModuleController: React.FunctionComponent<IModuleController> = (props) => {
   const {events} = useRouter()
   const {openLoading, setOpenSidebar} = useMain()
 
@@ -35,10 +35,10 @@ const Module: React.FunctionComponent<IModule> = (props) => {
   }, [])
 
   return (
-    <ModuleSubContainer>
+    <ModuleContainer>
       {props.children}
-    </ModuleSubContainer>
+    </ModuleContainer>
   )
 }
 
-export default Module
+export default ModuleController
