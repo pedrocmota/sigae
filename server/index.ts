@@ -13,8 +13,8 @@ import {loadCertificates} from './loading'
 import {conn} from './database'
 import {loadSMTP} from './loading'
 
-export const mailer = loadSMTP()
 export const isDev = process.env.NODE_ENV !== 'production'
+export const mailer = loadSMTP()
 export const nextServer = next({dev: isDev})
 export const handle = nextServer.getRequestHandler()
 
@@ -57,7 +57,7 @@ conn.then(async () => {
     }))
     app.use(fileUpload({
       limits: {
-        fileSize: process.env.PAYLOAD_FILE_SIZE
+        fileSize: parseInt(process.env.PAYLOAD_FILE_SIZE)
       },
       abortOnLimit: true
     }))

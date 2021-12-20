@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import MaterialTab from '@mui/material/Tab'
-import Box from '@mui/material/Box'
 import TabContext from '@mui/lab/TabContext'
+import Box from '@mui/material/Box'
 import TabList from '@mui/lab/TabList'
 import Panel from '@mui/lab/TabPanel'
+import {TabWrapper} from './styles'
 
 interface ITab {
   initialValue: string,
@@ -20,14 +21,16 @@ const TabBox: React.FunctionComponent<ITab> = (props) => {
 
   return (
     <TabContext value={value}>
-      <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-        <TabList onChange={handleChange}>
-          {props.tabs.map((Tab) => {
-            return Tab
-          })}
-        </TabList>
-      </Box>
-      {props.children}
+      <TabWrapper>
+        <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+          <TabList onChange={handleChange}>
+            {props.tabs.map((Tab) => {
+              return Tab
+            })}
+          </TabList>
+        </Box>
+        {props.children}
+      </TabWrapper>
     </TabContext>
   )
 }

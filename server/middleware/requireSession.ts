@@ -26,7 +26,3 @@ export const requireSession = () => {
     }
   }
 }
-
-// if (props?.userTypes && props.userTypes.includes(session.userType)) {
-//   return res.status(403).send({error: 'ACCESS_DENIED'})
-// }

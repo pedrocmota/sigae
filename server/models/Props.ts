@@ -62,3 +62,8 @@ export const getInitialProps = async (token: string | undefined) => {
     }
   }
 }
+
+export const isAuth = async (token: string | undefined) => {
+  const session = await getSessionByID(token || '')
+  return session !== null
+}
