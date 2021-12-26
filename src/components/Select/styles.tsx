@@ -6,18 +6,20 @@ export const Container = styled.div<IMargin>`
   position: relative;
   display: flex;
   align-items: center;
-  ${({margin_top}) => margin_top && css`
-    margin-top: ${margin_top}px !important;
+
+  ${({margin}) => margin?.top && css`
+    margin-top: ${margin.top}px !important;
   `}
-  ${({margin_bottom}) => margin_bottom && css`
-    margin-bottom: ${margin_bottom}px !important;
+  ${({margin}) => margin?.bottom && css`
+    margin-bottom: ${margin.bottom}px !important;
   `}
-  ${({margin_left}) => margin_left && css`
-    margin-left: ${margin_left}px !important;
+  ${({margin}) => margin?.left && css`
+    margin-left: ${margin.left}px !important;
   `}
-  ${({margin_right}) => margin_right && css`
-    margin-right: ${margin_right}px !important;
+  ${({margin}) => margin?.right && css`
+    margin-right: ${margin.right}px !important;
   `}
+
   input {
     margin: 0px !important;
   }

@@ -58,7 +58,7 @@ const RegisterForm: React.FunctionComponent = () => {
           <PinInput type='text' fields={8} inputMode="latin" name="code"
             onChange={(v) => setCode(v)}
           />
-          <PrimaryButton type="submit" variant="contained" margin_top={10} disabled={code.length < 8}
+          <PrimaryButton type="submit" variant="contained" margin={{top: 10}} disabled={code.length < 8}
             height={'40px'} onClick={checkCode} ref={button}>
             {!sending && (
               <>Usar código</>

@@ -197,7 +197,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
                 }>
               </Banner>
               <Select placeholder="Escolha seu nome" options={parsePreferredName(props.name)}
-                margin_top={12} onChange={(v) => setPreferredName(v)}
+                margin={{top: 12}} onChange={(v) => setPreferredName(v)}
               />
             </Row>
             <Row>
@@ -208,7 +208,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
                    O e-mail também servirá para recuperar a conta caso haja perda de senha.`
                 }>
               </Banner>
-              <PrimaryInput id="email" type="email" placeholder="Digite seu Email" margin_top={12}
+              <PrimaryInput id="email" type="email" placeholder="Digite seu Email" margin={{top: 12}}
                 error={emailError} onChange={(e) => {
                   setEmail(e.currentTarget.value)
                   setEmailError(e.currentTarget.value.length > 0 && !validateEmail(e.currentTarget.value))
@@ -225,7 +225,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
                     }>
                   </Banner>
                   <Select placeholder="Escolha seu curso" options={props.courses}
-                    margin_top={12} onChange={(v) => {
+                    margin={{top: 12}} onChange={(v) => {
                       setCourse(v)
                       setClasses(v ? props.classeCodes[props.campus][v] : [])
                       setClassCode('')
@@ -240,7 +240,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
                     }>
                   </Banner>
                   <Select key={course} placeholder="Escolha sua turma" options={classes}
-                    disabled={classes.length == 0} margin_top={12}
+                    disabled={classes.length == 0} margin={{top: 12}}
                     onChange={(v) => setClassCode(v)}
                   />
                 </Row>
@@ -256,7 +256,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
                   }>
                 </Banner>
                 <Select placeholder="Escolha as disciplinas que você ministra"
-                  options={props.subjects!} multiple margin_top={12}
+                  options={props.subjects!} multiple margin={{top: 12}}
                   onChange={(v) => setSubjects(v)}
                 />
               </Row>
@@ -308,7 +308,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
               </InputContainer>
             </Row>
             <PrimaryButton type="submit" height={'45px'} disabled={!validate() || sending} onClick={confirm}
-              margin_top={10} margin_bottom={30}>
+              margin={{top: 10, bottom: 30}}>
               {(!sending) && (
                 'Finalizar inscrição'
               )}

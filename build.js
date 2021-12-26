@@ -11,7 +11,7 @@ fs.copyFileSync('.env', envFile)
 
 package.main = '/server/index.js'
 package.scripts = {
-  start: 'NODE_ENV=production node server/index.js'
+  start: 'cross-env NODE_ENV=production node server/index.js'
 }
 delete package.devDependencies
 fs.writeFileSync(packageFile, JSON.stringify(package, null, 2))

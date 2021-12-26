@@ -25,15 +25,12 @@ const LoginInput: React.ForwardRefRenderFunction<HTMLInputElement, LoginInput> =
   }, [visible, setVisible])
 
   return (
-    <Container margin_left={props.margin_left} margin_right={props.margin_right}
-      margin_top={props.margin_top} margin_bottom={props.margin_bottom}>
+    <Container margin={props.margin}>
       <Placeholder className="placeholder" visible={visible} error={error}>
         {props.placeholder}
       </Placeholder>
-      <Input error={error || false} spellCheck={false} {...props} ref={ref}
-        padding_left={props.padding_left} padding_right={props.padding_right}
-        padding_top={props.padding_top} padding_bottom={props.padding_bottom}
-        onChange={(e) => {
+      <Input error={error || false} spellCheck={false} {...props} padding={props.padding}
+        ref={ref} onChange={(e) => {
           onChange(e)
           if (props.onChange) {
             props.onChange(e)

@@ -1,9 +1,10 @@
 import React from 'react'
 import {BannerWrapper} from './styles'
+import {IMargin, IPadding} from '../../types/components'
 
 export type bannerTypes = 'neutral' | 'success' | 'warning' | 'error'
 
-export interface IBanner extends React.HTMLAttributes<HTMLDivElement> {
+export interface IBanner extends React.HTMLAttributes<HTMLDivElement>, IMargin, IPadding {
   children: React.ReactNode,
   type: bannerTypes
 }

@@ -22,13 +22,12 @@ interface ISelect extends IMargin {
   onChange?: (obj: any, event?: React.ChangeEvent<{}>) => void,
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>,
   inputStyles?: IInput,
-  input?: React.FC
+  input?: React.FC,
+  height?: string
 }
 
 const Select: React.FunctionComponent<ISelect> = ({
-  inputStyles, input, options, defaultValue, onChange,
-  margin_top, margin_bottom, margin_left, margin_right,
-  ...props}) => {
+  inputStyles, input, options, defaultValue, onChange, margin, height, ...props}) => {
   const selectedCounter = useRef<number>(
     defaultValue == undefined ? 0 : defaultValue.length
   )
@@ -73,11 +72,10 @@ const Select: React.FunctionComponent<ISelect> = ({
           if (selectedCounter.current > 1) return `${selectedCounter.current} opções foram selecionadas`
         }, [props.placeholder, selectedCounter.current, props.multiple])
         return (
-          <Container ref={params.InputProps.ref} margin_top={margin_top} margin_bottom={margin_bottom}
-            margin_left={margin_left} margin_right={margin_right}
+          <Container ref={params.InputProps.ref} margin={margin}
           >
-            <Input {...params.inputProps} placeholder={placeholder} {...inputStyles} padding_right={30}
-              {...(props.disabled ? {value: ''} : {})} />
+            <Input {...params.inputProps} placeholder={placeholder} {...inputStyles} padding={{right: 10}}
+              height={height} {...(props.disabled ? {value: ''} : {})} />
             <Arrow width={28} height={28} />
           </Container>
         )

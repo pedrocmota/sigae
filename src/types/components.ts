@@ -4,17 +4,21 @@ export interface ISize {
 }
 
 export interface IMargin {
-  margin_top?: number,
-  margin_left?: number,
-  margin_right?: number,
-  margin_bottom?: number
+  margin?: {
+    top?: number,
+    bottom?: number,
+    left?: number,
+    right?: number
+  }
 }
 
 export interface IPadding {
-  padding_top?: number,
-  padding_left?: number,
-  padding_right?: number,
-  padding_bottom?: number
+  padding?: {
+    top?: number,
+    bottom?: number,
+    left?: number,
+    right?: number
+  }
 }
 
 export interface ISides {

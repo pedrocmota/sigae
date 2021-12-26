@@ -127,12 +127,12 @@ const Login: React.FunctionComponent<any> = () => {
               <InputErrorIcon visible={error1 ? 100 : 0} />
             </LoginInput>
             <LoginInput id="password" placeholder="Sua senha" type={showPassword ? 'text' : 'password'}
-              autoComplete={'off'} onKeyUp={passwordKeyUp} margin_top={15} padding_right={50} error={error2}
-              ref={inputPassword} onFocus={() => setError2(false)}>
+              autoComplete={'off'} onKeyUp={passwordKeyUp} margin={{top: 15}} padding={{right: 50}}
+              error={error2} ref={inputPassword} onFocus={() => setError2(false)}>
               <InputErrorIcon visible={error2 ? 100 : 0} />
               <ShowPassword selected={showPassword} top={12} onClick={() => setShowPassword(!showPassword)} />
             </LoginInput>
-            <PrimaryButton type="submit" variant="contained" margin_top={10} height={'40px'}
+            <PrimaryButton type="submit" variant="contained" margin={{top: 10}} height={'40px'}
               onClick={sendLogin} ref={button}>
               {(!sending) && (
                 'Realizar login'

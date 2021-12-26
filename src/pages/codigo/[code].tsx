@@ -93,7 +93,7 @@ const Code: React.FunctionComponent<ICode> = ({valid}) => {
             <Main>
               <Form name="login" method="POST">
                 <LoginInput id="password1" placeholder="Sua senha" type={showPassword ? 'text' : 'password'}
-                  padding_right={50} error={error1}
+                  padding={{right: 50}} error={error1}
                   onChange={(v) => {
                     setPassword1(v.currentTarget.value)
                   }}
@@ -113,8 +113,8 @@ const Code: React.FunctionComponent<ICode> = ({valid}) => {
                   </PasswordPopupContainer>
                 </LoginInput>
                 <LoginInput id="password2" placeholder="Sua senha novamente"
-                  type={showPassword ? 'text' : 'password'} margin_top={15} padding_right={50} error={error2}
-                  onChange={(v) => {
+                  type={showPassword ? 'text' : 'password'} margin={{top: 15}} padding={{right: 50}}
+                  error={error2} onChange={(v) => {
                     setPassword2(v.currentTarget.value)
                   }}
                   onFocus={() => setError2(false)}>
@@ -123,7 +123,7 @@ const Code: React.FunctionComponent<ICode> = ({valid}) => {
                     setShowPassword(!showPassword)
                   }} />
                 </LoginInput>
-                <PrimaryButton type="submit" variant="contained" margin_top={12} height={'40px'}
+                <PrimaryButton type="submit" variant="contained" margin={{top: 12}} height={'40px'}
                   disabled={!validate()} onClick={sendPassword}>
                   {(!sending) && (
                     'Enviar nova senha'
