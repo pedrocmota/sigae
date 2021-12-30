@@ -55,6 +55,7 @@ conn.then(async () => {
     app.use(express.json({
       limit: process.env.PAYLOAD_JSON_SIZE
     }))
+
     app.use(fileUpload({
       limits: {
         fileSize: parseInt(process.env.PAYLOAD_FILE_SIZE)

@@ -45,10 +45,6 @@ export const UIProvider: React.FunctionComponent<IInitialProps> = (props) => {
     if (themeName === 'DARK') {
       return Dark
     }
-
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', themeName)
-    }
     return Light
   }, [themeName])
 

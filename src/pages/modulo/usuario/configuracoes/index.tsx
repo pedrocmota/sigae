@@ -4,9 +4,9 @@ import {GetServerSideProps} from 'next'
 import {ModuleWrapper, ModuleContainer, ModuleHeader} from '../../../../main/ModuleComponents'
 import SettingsIcon from '@mui/icons-material/Settings'
 import Tab, {TabPanel, TabHeader} from '../../../../components/TabBox'
-import DataConfiguration from '../../../../modules/usuario/configuracoes/data'
-import NotificationsConfiguration from '../../../../modules/usuario/configuracoes/notifications'
-import ProfileConfiguration from '../../../../modules/usuario/configuracoes/profile'
+import DataConfiguration from '../../../../modules/user/configuration/data'
+import NotificationsConfiguration from '../../../../modules/user/configuration/notifications'
+import ProfileConfiguration from '../../../../modules/user/configuration/profile'
 import {useData} from '../../../../providers/DataContext'
 import {isAuth} from '../../../../../server/models/Props'
 import {notLogged} from '../../../../../utils/redirect'
@@ -25,7 +25,7 @@ const Configurações: React.FunctionComponent<IConfigurações> = () => {
       </Head>
       <ModuleHeader title="Dados e configurações" Icon={SettingsIcon} />
       <ModuleContainer>
-        <Tab initialValue={'1'} tabs={[
+        <Tab initialValue="1" tabs={[
           <TabHeader label="Dados pessoais" value="1" key="1" />,
           <TabHeader label="Notificações" value="2" key="2" />,
           <TabHeader label="Foto de perfil" value="3" key="3" disabled={!data.permissions?.changeAvatar} />

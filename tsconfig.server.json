@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": ".build",
+    "outDir": ".build/server",
     "noEmit": false,
     "incremental": false
   },
