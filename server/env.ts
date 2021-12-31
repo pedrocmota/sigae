@@ -3,14 +3,13 @@ import dotenv from 'dotenv'
 import {cleanEnv, str, num, bool} from 'envalid'
 
 dotenv.config({path: path.resolve(process.cwd(), '.env')})
-process.env = Object.assign(process.env, cleanEnv(process.env, {
-  EXPRESS_CLIENT_HOST: str(),
-  EXPRESS_API_HOST: str(),
-  EXPRESS_PORT: num(),
-  EXPRESS_SSL_ENABLE: bool(),
-  EXPRESS_SSL_CERT: str(),
-  EXPRESS_SSL_KEY: str(),
-  EXPRESS_DISABLE_CORS: bool(),
+
+const cleared = cleanEnv(process.env, {
+  CLIENT_HOST: str(),
+  SERVER_PORT: num(),
+  SERVER_SSL_ENABLE: bool(),
+  SERVER_SSL_CERT: str(),
+  SERVER_SSL_KEY: str(),
 
   DATABASE_IP: str(),
   DATABASE_PORT: num(),
@@ -33,4 +32,10 @@ process.env = Object.assign(process.env, cleanEnv(process.env, {
   MAILER_PORT: num(),
   MAILER_ADDRESS: str(),
   MAILER_PASSWORD: str()
-}))
+})
+
+export type envCleared = typeof cleared
+
+Object.keys(cleared).forEach((key) => {
+  process.env[key] = cleared[key]
+})

@@ -29,7 +29,7 @@ export const getUserPermissions = async (userID: string) => {
 }
 
 export const setUserPassword = async (userID: string, password: string) => {
-  const hash = await bcrypt.hash(password, parseInt(process.env.BCRYPT_COST))
+  const hash = await bcrypt.hash(password, process.env.BCRYPT_COST)
   return await UsersModel.updateOne({_id: userID}, {
     password: hash
   })

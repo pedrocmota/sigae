@@ -307,7 +307,7 @@ const Register: React.FunctionComponent<IRegister> = (props) => {
                 }} />
               </InputContainer>
             </Row>
-            <PrimaryButton type="submit" height={'45px'} disabled={!validate() || sending} onClick={confirm}
+            <PrimaryButton type="submit" height="45px" disabled={!validate() || sending} onClick={confirm}
               margin={{top: 10, bottom: 30}}>
               {(!sending) && (
                 'Finalizar inscrição'

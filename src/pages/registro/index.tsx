@@ -59,7 +59,7 @@ const RegisterForm: React.FunctionComponent = () => {
             onChange={(v) => setCode(v)}
           />
           <PrimaryButton type="submit" variant="contained" margin={{top: 10}} disabled={code.length < 8}
-            height={'40px'} onClick={checkCode} ref={button}>
+            height="40px" onClick={checkCode} ref={button}>
             {!sending && (
               <>Usar código</>
             )}

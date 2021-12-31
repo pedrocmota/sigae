@@ -6,10 +6,10 @@ import inline from 'nodemailer-plugin-inline-base64'
 export const loadCertificates = () => {
   try {
     const cert = fs.readFileSync(
-      path.join(process.cwd(), `/server/static/certificates/${process.env.EXPRESS_SSL_CERT}`), 'utf-8'
+      path.join(process.cwd(), `/server/static/ssl/${process.env.SERVER_SSL_CERT}`), 'utf-8'
     )
     const key = fs.readFileSync(
-      path.join(process.cwd(), `/server/static/certificates/${process.env.EXPRESS_SSL_KEY}`), 'utf-8'
+      path.join(process.cwd(), `/server/static/ssl/${process.env.SERVER_SSL_KEY}`), 'utf-8'
     )
     return {
       cert: cert,
@@ -21,7 +21,7 @@ export const loadCertificates = () => {
 }
 
 export const loadSMTP = () => {
-  const teste = {
+  const mailer = nodemailer.createTransport({
     host: process.env.MAILER_HOST,
     port: process.env.MAILER_PORT,
     secure: true,
@@ -29,8 +29,7 @@ export const loadSMTP = () => {
       user: process.env.MAILER_ADDRESS,
       pass: process.env.MAILER_PASSWORD
     }
-  } as any
-  const mailer = nodemailer.createTransport(teste)
+  })
   mailer.use('compile', inline({cidPrefix: 'somePrefix_'}))
   return mailer
 }

@@ -1,8 +1,7 @@
 node_modules
-api/static/certificates/*
-!api/static/certificates/certificate.example.cert
-!api/static/certificates/certificate.example.key
-server/static/database/profile/*
+server/static/ssl/**
+!server/static/ssl/.gitkeep
+server/static/database/profile/**
 !server/static/database/profile/.gitkeep
 !server/static/database/profile/unknown.jpg
 yarn-error.log

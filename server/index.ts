@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser'
 import requestip from 'request-ip'
 import fileUpload from 'express-fileupload'
 import chalk from 'chalk'
-import dedent from 'dedent'
 import 'express-async-errors'
 import './env'
 import {loadCertificates} from './loading'
@@ -27,26 +26,24 @@ import Admin from './routes/Admin'
 
 import {getInitialProps} from './models/Props'
 
-console.info(dedent(`
-  ${chalk.green('[Server]')} Iniciando servidor Node ${chalk.cyan(`${process.version}`)}
-`))
+console.info(`${chalk.green('[Info]')} Starting SiGAÊ server`)
 
 conn.then(async () => {
-  console.info(dedent(`
-    ${chalk.green('[Server]')} Banco de dados conectado com sucesso
-  `))
+  console.info(`${chalk.green('[Info]')} Database connected successfully!`)
 
   nextServer.prepare().then(() => {
     const app = express()
     const server = (() => {
-      if (process.env.EXPRESS_SSL_ENABLE === 'true') {
+      if (process.env.SERVER_SSL_ENABLE) {
         const cert = loadCertificates()
         if (cert === null) {
-          console.error(chalk.red('Certificado não encontrado'))
-          process.exit(0)
+          console.info(`${chalk.red('[Error]')} SSL certificate not found!`)
+          process.exit(1)
         }
+        console.info(`${chalk.green('[Info]')} SSL certificate loaded`)
         return https.createServer(cert, app)
       } else {
+        console.info(`${chalk.yellowBright('[Warning]')} Server running without a SSL certificate`)
         return http.createServer(app)
       }
     })()
@@ -58,7 +55,7 @@ conn.then(async () => {
 
     app.use(fileUpload({
       limits: {
-        fileSize: parseInt(process.env.PAYLOAD_FILE_SIZE)
+        fileSize: process.env.PAYLOAD_FILE_SIZE
       },
       abortOnLimit: true
     }))
@@ -78,7 +75,7 @@ conn.then(async () => {
     })
 
     app.all('/api', (req, res) => {
-      res.send({info: 'API SiGAÊ. Consulte a documentação para a listagem de rotas'})
+      res.send({info: 'SiGAÊ API'})
     })
 
     app.use((err: any, req: Request, res: Response, next: NextFunction) => {
@@ -123,15 +120,20 @@ conn.then(async () => {
       return handle(req, res)
     })
 
-    server.listen(process.env.EXPRESS_PORT, () => {
-      console.info(dedent(`
-        ${chalk.green('[Server]')} Inicialização concluída com sucesso!
-      `))
+    const port = (() => {
+      if (process.env.SERVER_PORT == 0) {
+        return process.env.SERVER_SSL_ENABLE ? 443 : 80
+      } else {
+        return process.env.SERVER_PORT
+      }
+    })()
+
+    server.listen(port, () => {
+      console.info(`${chalk.green('[Info]')} Server running at port ${port}`)
+      console.info(`${chalk.green('[Info]')} Startup completed successfully!`)
     })
   })
 }).catch((err) => {
-  console.error(dedent(`
-    ${chalk.red('[Server]')} Erro ao conectar com o banco de dados
-  `))
+  console.error(`${chalk.red('[Error]')} Database connection fails`)
   throw err
 })

@@ -32,7 +32,7 @@ export const sendChangePasswordEmail = async (email: string) => {
     const code = await getUserCode(user.id, 'CHANGE_PASSWORD')
     sendMail<IRecoveryProps>([email], 'SiGAÊ - Recuperação de conta', 'recovery', {
       name: user.preferredName,
-      link: `${process.env.EXPRESS_CLIENT_HOST}/codigo/${code}`
+      link: `${process.env.CLIENT_HOST}/codigo/${code}`
     })
   }
 }

@@ -20,7 +20,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 import CalendarIcon from '@mui/icons-material/PermContactCalendar'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import SchoolIcon from '@mui/icons-material/School'
-// import GroupIcon from '@mui/icons-material/Group'
 import PersonIcon from '@mui/icons-material/Person'
 import SettingsIcon from '@mui/icons-material/Settings'
 import EngineeringIcon from '@mui/icons-material/Engineering'
@@ -40,8 +39,8 @@ const Sidebar: React.FunctionComponent = () => {
   return (
     <Container open={openSidebar} suppressHydrationWarning>
       <InfoContainer>
-        <Zoom zoomMargin={55} overlayBgColorStart={'#1b1a1a'} overlayBgColorEnd={'#1b1a1a'}>
-          <Avatar src={'/api/user/profile'} alt="Foto de perfil do usuário atual" />
+        <Zoom zoomMargin={55} overlayBgColorStart="#1b1a1a" overlayBgColorEnd="#1b1a1a">
+          <Avatar src="/api/user/profile" alt="Foto de perfil do usuário atual" />
         </Zoom>
         <Name>
           {data.user?.preferredName && (
@@ -134,9 +133,7 @@ const Sidebar: React.FunctionComponent = () => {
           } showable={data.auth || false} />
         </Node>
 
-        <Row title="Finalizar sessão" Icon={ExitToAppIcon} showable={
-          data.auth
-        } onAction={() => {
+        <Row title="Finalizar sessão" Icon={ExitToAppIcon} showable={data.auth} onAction={() => {
           sendDelete('/sessions/logout/cookie', {}, () => {
             window.location.reload()
           }, () => { })

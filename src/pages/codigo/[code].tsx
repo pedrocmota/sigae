@@ -123,7 +123,7 @@ const Code: React.FunctionComponent<ICode> = ({valid}) => {
                     setShowPassword(!showPassword)
                   }} />
                 </LoginInput>
-                <PrimaryButton type="submit" variant="contained" margin={{top: 12}} height={'40px'}
+                <PrimaryButton type="submit" variant="contained" margin={{top: 12}} height="40px"
                   disabled={!validate()} onClick={sendPassword}>
                   {(!sending) && (
                     'Enviar nova senha'

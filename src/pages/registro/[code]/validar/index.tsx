@@ -158,7 +158,7 @@ const RegisterValidation: React.FunctionComponent<IRegisterValidation> = (props)
               onChange={(v) => setEmailCode(v)}
             />
             <PrimaryButton type="submit" variant="contained" margin={{top: 10}}
-              disabled={emailCode.length < 8} height={'40px'} onClick={confirmEmail} ref={button}>
+              disabled={emailCode.length < 8} height="40px" onClick={confirmEmail} ref={button}>
               {(!sending) && (
                 'Confirmar e-mail'
               )}

@@ -4,7 +4,7 @@ interface IAtividades {
   //children: React.ReactNode
 }
 
-const Atividades: React.FunctionComponent<IAtividades> = (props) => {
+const Atividades: React.FunctionComponent<IAtividades> = () => {
   // console.log(props)
   return (
     <h1>

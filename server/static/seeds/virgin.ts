@@ -1,5 +1,4 @@
 import chalk from 'chalk'
-import dedent from 'dedent'
 import inquirer from 'inquirer'
 import {mongoose} from '../../database'
 import {CampusModel} from '../../schemas/Campus'
@@ -10,7 +9,7 @@ import {UsersModel} from '../../schemas/Users'
   const answer = await inquirer.prompt([{
     type: 'confirm',
     name: 'confirm',
-    message: 'O conteúdo do banco será perdido se essa seed for executada. Deseja continuar?'
+    message: 'The database contents will be lost if this seed is executed. Proceed?'
   }])
 
   if (!answer.confirm) {
@@ -41,7 +40,5 @@ import {UsersModel} from '../../schemas/Users'
 
   mongoose.connection.close()
 
-  console.info(dedent(`
-    ${chalk.green('[Server]')} Seed executada com sucesso!
-  `))
+  console.info(`${chalk.green('[Server]')} Seed executada com sucesso!`)
 }))()

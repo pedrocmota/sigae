@@ -10,6 +10,9 @@
   "plugins": [
     "@typescript-eslint"
   ],
+  "extends": [
+    "plugin:react/recommended"
+  ],
   "rules": {
     "quotes": [
       "warn",
@@ -70,6 +73,14 @@
           "requireLast": false
         }
       }
-    ]
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-curly-brace-presence": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

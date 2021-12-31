@@ -87,7 +87,7 @@ routes.post('/registration/:code/register',
         await UsersModel.updateOne({registrationCode: req.params.code}, {
           preferredName: req.body.preferredName,
           email: req.body.email,
-          password: await hash(req.body.password, parseInt(process.env.BCRYPT_COST)),
+          password: await hash(req.body.password, process.env.BCRYPT_COST),
           status: 'UNCONFIRMED',
           student: {
             course: req.body.course,
