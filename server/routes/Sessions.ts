@@ -4,7 +4,14 @@ import {requireParams, protect} from '../middleware/requireParams'
 import {requireSession} from '../middleware/requireSession'
 import {slowDown} from '../middleware/rateLimit'
 import {getUserByLogin} from '../models/Users'
-import {getSessionByID, generateSession, getSessionsList, deleteSession} from '../models/Sessions'
+import {
+  getSessionByID,
+  getSessionByToken,
+  generateSession,
+  getSessionsList,
+  deleteSessionByID,
+  deleteSessionByToken
+} from '../models/Sessions'
 
 const routes = Router()
 
@@ -23,14 +30,14 @@ routes.post('/sessions/login',
     if (user) {
       if (user.status === 'ACTIVE') {
         if (await compare(req.body.password, user.password)) {
-          const session = await generateSession(user.id, user.type, agent, ip)
+          const token = await generateSession(user.id, user.type, agent, ip)
           if (req.headers['no-cookie'] === undefined) {
-            res.cookie('session', session.id, {
+            res.cookie('session', token, {
               maxAge: process.env.SESSION_TIME as unknown as number * 1000,
               sameSite: 'strict'
             })
           }
-          res.send({token: session.id})
+          res.send({token: token})
         } else {
           return res.status(406).send({error: 'INCORRECT_PASSWORD'})
         }
@@ -54,10 +61,17 @@ routes.post('/sessions/login',
     }
   })
 
-routes.delete('/sessions/logout',
+routes.get('/sessions/list',
+  requireSession(),
+  slowDown('default'),
+  async (req, res) => {
+    res.send(await getSessionsList(req.session!.user, req.session!.token))
+  })
+
+routes.delete('/sessions/logout/token',
   requireParams({
     body: {
-      session: 'string'
+      sessionToken: 'string'
     }
   }),
   requireSession(),
@@ -65,11 +79,11 @@ routes.delete('/sessions/logout',
   async (req, res) => {
     const sessionToken = req.body.session
     if (sessionToken) {
-      const session = await getSessionByID(sessionToken)
+      const session = await getSessionByToken(sessionToken)
       if (session && session.user === req.session?.user) {
         if (sessionToken !== req.session?.token) {
-          await deleteSession(sessionToken)
-          res.sendStatus(200)
+          await deleteSessionByToken(sessionToken)
+          return res.sendStatus(200)
         } else {
           return res.sendStatus(406)
         }
@@ -86,7 +100,7 @@ routes.delete('/sessions/logout/cookie',
   async (req, res) => {
     const sessionToken = req.cookies?.session
     if (sessionToken) {
-      await deleteSession(sessionToken)
+      await deleteSessionByToken(sessionToken)
       res.clearCookie('session')
       res.sendStatus(200)
     } else {
@@ -94,11 +108,27 @@ routes.delete('/sessions/logout/cookie',
     }
   })
 
-routes.get('/sessions/list',
+routes.delete('/sessions/logout/id',
+  requireParams({
+    body: {
+      sessionID: 'string'
+    }
+  }),
   requireSession(),
-  slowDown('default'),
+  slowDown('high'),
   async (req, res) => {
-    res.send(await getSessionsList(req.session!.user, req.session!.token))
+    const sessionID = req.body.sessionID
+    if (sessionID) {
+      const session = await getSessionByID(sessionID)
+      if (session && session.user === req.session?.user) {
+        await deleteSessionByID(sessionID)
+        return res.sendStatus(200)
+      } else {
+        return res.sendStatus(403)
+      }
+    } else {
+      return res.sendStatus(400)
+    }
   })
 
 export default routes

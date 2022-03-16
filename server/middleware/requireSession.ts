@@ -1,11 +1,11 @@
 import {Request, Response, NextFunction} from 'express'
-import {getSessionByID} from '../models/Sessions'
+import {getSessionByToken} from '../models/Sessions'
 
 export const requireSession = () => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const sessionToken = req.headers?.session || req.cookies?.session || undefined
     if (typeof sessionToken === 'string') {
-      const session = await getSessionByID(sessionToken)
+      const session = await getSessionByToken(sessionToken)
       if (session) {
         req.session = {
           token: session.id,

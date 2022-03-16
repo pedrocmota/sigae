@@ -28,9 +28,6 @@ const TableContainer = styled.table`
 
   thead tr th {
     height: 40px;
-    position: sticky;
-    z-index: 100;
-    top: 0;
     padding-left: 15px;
     background-color: #009879;
     color: #ffffff;

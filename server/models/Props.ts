@@ -1,4 +1,4 @@
-import {getSessionByID} from './Sessions'
+import {getSessionByToken} from './Sessions'
 import {getUserByID} from './Users'
 import {themeNames} from '../types/Global'
 import {IPermissions} from '../schemas/Users'
@@ -30,7 +30,7 @@ export interface IInitialProps {
 }
 
 export const getInitialProps = async (token: string | undefined) => {
-  const session = await getSessionByID(token || '')
+  const session = await getSessionByToken(token || '')
   if (session) {
     const user = await getUserByID(session.user)
     if (user) {
@@ -64,6 +64,6 @@ export const getInitialProps = async (token: string | undefined) => {
 }
 
 export const isAuth = async (token: string | undefined) => {
-  const session = await getSessionByID(token || '')
+  const session = await getSessionByToken(token || '')
   return session !== null
 }

@@ -1,4 +1,4 @@
-import {generate} from 'randomstring'
+import RandomString from 'randomstring'
 import {CodesModel} from '../schemas/Codes'
 import {codes_types} from '../types/Global'
 
@@ -11,7 +11,7 @@ export const getCodesByUser = async (user: string, type: codes_types) => {
 }
 
 export const generateCode = async (user: string, type: codes_types) => {
-  const code = generate({
+  const code = RandomString.generate({
     length: 8,
     charset: 'alphanumeric',
     capitalization: 'uppercase'

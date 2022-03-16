@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {GetServerSideProps} from 'next'
 import Head from 'next/head'
 import dayjs from 'dayjs'
@@ -7,6 +7,8 @@ import KeyIcon from '@mui/icons-material/Key'
 import Table, {Row, Cell} from '../../../../components/Table'
 import RedButton from '../../../../components/RedButton'
 import {showConfirmation} from '../../../../popups/Confirmation'
+import {useAPI} from '../../../../providers/APIContext'
+import {useToasts} from 'react-toast-notifications'
 
 import {getInitialProps} from '../../../../../server/models/Props'
 import {notLogged} from '../../../../../utils/redirect'
@@ -17,22 +19,33 @@ interface ISessoes {
   sessions: ISessions[]
 }
 
+interface IFinishSessionRequest {
+  sessionID: string
+}
+
 const Sessoes: React.FunctionComponent<ISessoes> = (props) => {
-  const finishSession = (index: number) => {
+  const [sessions, setSessions] = useState(props.sessions)
+  const {sendDelete} = useAPI()
+  const {addToast} = useToasts()
+
+  const finishSession = (sessionID: string) => {
     showConfirmation((confirmed) => {
       if (confirmed) {
-        console.log(index)
+        sendDelete<IFinishSessionRequest, any, any>('/sessions/logout/id', {
+          sessionID: sessionID
+        }, () => {
+          setSessions(sessions => sessions.filter((session) => session._id !== sessionID))
+          addToast('Sessão finalizada com sucesso!', {appearance: 'success'})
+        }, (response, status) => {
+          addToast(`Erro ao deletar sessão. Status: ${status}`, {appearance: 'error'})
+        })
       }
     }, {
       title: 'Finalizar sessão',
       body: `
       Deseja finalizar a sessão?
       `,
-      hideIcon: true,
-      size: {
-        width: '380px',
-        height: '200px'
-      }
+      hideIcon: true
     })
   }
 
@@ -49,15 +62,19 @@ const Sessoes: React.FunctionComponent<ISessoes> = (props) => {
           <th key="col3">Ip</th>,
           <th key="col4" style={{width: '50px'}}>Ação</th>
         ]}>
-          {props.sessions.map((session, i) => {
+          {sessions.map((session) => {
             return (
               <Row key={session._id}>
                 <Cell>{session.agent}</Cell>
                 <Cell>{dayjs.unix(session.createAt).format('DD/MM/YYYY HH:mm:ss')}</Cell>
                 <Cell>{session.ip}</Cell>
                 <Cell>
-                  <RedButton width="200px" disabled={session.actual} onClick={() => finishSession(i)}>
-                    {session.actual ? 'Sessão atual' : 'Finalizar sessão'}
+                  <RedButton
+                    width="200px"
+                    disabled={session.isCurrent}
+                    onClick={() => finishSession(session._id)}
+                  >
+                    {session.isCurrent ? 'Sessão atual' : 'Finalizar sessão'}
                   </RedButton>
                 </Cell>
               </Row>

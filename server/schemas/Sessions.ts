@@ -3,16 +3,21 @@ import {mongoose} from '../database'
 import {user_types} from '../types/Global'
 
 export interface ISessions {
-  _id?: string,
+  _id: string,
+  token: string,
   user: string,
   userType: user_types,
   agent: string,
   ip: string,
   createAt: number,
-  actual: boolean
+  isCurrent: boolean
 }
 
 const schema = new mongoose.Schema<ISessions>({
+  token: {
+    type: String,
+    required: true
+  },
   user: {
     type: String,
     required: true
