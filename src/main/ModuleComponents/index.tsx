@@ -20,6 +20,7 @@ export const ModuleContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
+  overflow-x: auto;
 `
 
 const Header = styled.div`

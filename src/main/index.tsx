@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import Head from 'next/head'
 import {createContext, useContextSelector} from 'use-context-selector'
+import Cookies from 'js-cookie'
 import Loading from '../components/Loading'
 import Header from '../main/Header'
 import Sidebar from '../main/Sidebar'
 import Module from './ModuleController'
 import Footer from '../main/Footer'
 import ModuleLoading from '../main/Loading'
-import {MainContainer, MainWrapper} from '../styles/pages/main/Main'
+import {useData} from '../providers/DataContext'
+import {useToasts} from 'react-toast-notifications'
+import {GlobalMain, MainContainer, MainWrapper} from '../styles/pages/main/Main'
 import {inServer} from '../../utils'
 import {onResize} from '../../utils/resize'
 
@@ -43,11 +46,22 @@ const Main: React.FunctionComponent = (props) => {
     }
   })
 
+  const {data} = useData()
+  const {addToast} = useToasts()
+
   useEffect(() => {
     if (!inServer()) {
       const resizeEvt = onResize((width) => {
         setOpenSidebar(width >= 944)
       })
+
+      if (!inServer()) {
+        if (!data.auth && Cookies.get('session')) {
+          Cookies.remove('session')
+          addToast('Sua sessão expirou ou é inválida', {appearance: 'warning'})
+        }
+      }
+
       return () => {
         window.removeEventListener('resize', resizeEvt, true)
       }
@@ -65,6 +79,7 @@ const Main: React.FunctionComponent = (props) => {
         <title>SiGAÊ</title>
       </Head>
       <Loading />
+      <GlobalMain />
       <MainContainer suppressHydrationWarning>
         <Header />
         {!inServer() && (

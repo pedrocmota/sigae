@@ -88,7 +88,13 @@ declare module 'styled-components' {
           foreground: string,
           disabledBackground: string,
           disabledForeground: string
-        }
+        },
+        red: {
+          background: string,
+          foreground: string,
+          disabledBackground: string,
+          disabledForeground: string
+        },
       },
       loginInput: {
         background: string,

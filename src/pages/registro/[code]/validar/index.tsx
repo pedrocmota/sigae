@@ -121,6 +121,7 @@ const RegisterValidation: React.FunctionComponent<IRegisterValidation> = (props)
       Você deseja continuar?
       `,
       size: {
+        width: '540px',
         height: '300px'
       }
     })

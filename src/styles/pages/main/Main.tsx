@@ -1,4 +1,10 @@
-import styled from 'styled-components'
+import styled, {createGlobalStyle} from 'styled-components'
+
+export const GlobalMain = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`
 
 export const MainContainer = styled.div`
   display: flex;

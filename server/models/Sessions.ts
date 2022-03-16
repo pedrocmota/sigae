@@ -15,8 +15,14 @@ export const generateSession = async (userID: string, userType: string, agent: s
   })
 }
 
-export const getSessionsList = async (userID: string) => {
-  return await SessionsModel.find({user: userID}, 'user agent ip createAt')
+export const getSessionsList = async (userID: string, actualSession: string) => {
+  const sessions = await SessionsModel.find({user: userID}, 'user agent ip createAt')
+    .lean().sort([['createAt', 'desc']])
+  return sessions.map(((session) => {
+    session.actual = session._id?.toString() === actualSession
+    delete session._id
+    return session
+  })).sort((a, b) => (a.actual < b.actual) ? 1 : -1)
 }
 
 export const deleteSession = async (sessionID: string) => {

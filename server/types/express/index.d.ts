@@ -1,11 +1,17 @@
 import express from 'express'
-import {ISessions} from '../../schemas/Sessions'
 import {envCleared} from '../../env'
 
 declare global {
   namespace Express {
     interface Request {
-      session?: ISessions
+      session?: {
+        token: string,
+        user: string,
+        userType: user_types,
+        agent: string,
+        ip: string,
+        createAt: number
+      }
     }
   }
 
@@ -13,7 +19,7 @@ declare global {
     interface ProcessEnv {
       CLIENT_HOST: string,
       SERVER_PORT: number,
-      SERVER_SSL_ENABLE: boolean,
+      SERVER_SSL_ENABLE: string,
       SERVER_SSL_CERT: string,
       SERVER_SSL_KEY: string,
 

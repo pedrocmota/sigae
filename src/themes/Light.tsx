@@ -83,6 +83,12 @@ const Light: DefaultTheme = {
         foreground: '#ffffff',
         disabledBackground: 'rgba(0, 0, 0, 0.32)',
         disabledForeground: '#ffffff'
+      },
+      red: {
+        background: '#e95751',
+        foreground: '#ffffff',
+        disabledBackground: 'rgba(0, 0, 0, 0.32)',
+        disabledForeground: '#ffffff'
       }
     },
     loginInput: {

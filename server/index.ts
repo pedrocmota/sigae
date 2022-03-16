@@ -11,6 +11,7 @@ import './env'
 import {loadCertificates} from './loading'
 import {conn} from './database'
 import {loadSMTP} from './loading'
+import {initRoutines} from './routines/routines'
 
 export const isDev = process.env.NODE_ENV !== 'production'
 export const mailer = loadSMTP()
@@ -23,7 +24,6 @@ import Codes from './routes/Codes'
 import Register from './routes/Register'
 import User from './routes/User'
 import Admin from './routes/Admin'
-
 import {getInitialProps} from './models/Props'
 
 console.info(`${chalk.green('[Info]')} Starting SiGAÊ server`)
@@ -34,7 +34,7 @@ conn.then(async () => {
   nextServer.prepare().then(() => {
     const app = express()
     const server = (() => {
-      if (process.env.SERVER_SSL_ENABLE) {
+      if (process.env.SERVER_SSL_ENABLE === 'true') {
         const cert = loadCertificates()
         if (cert === null) {
           console.info(`${chalk.red('[Error]')} SSL certificate not found!`)
@@ -100,7 +100,8 @@ conn.then(async () => {
       const props = await getInitialProps(req.cookies.session)
       if (props?.configs?.theme) {
         res.cookie('theme', props?.configs?.theme, {
-          maxAge: 365 * 24 * 60 * 60 * 1000
+          maxAge: 365 * 24 * 60 * 60 * 1000,
+          sameSite: 'strict'
         })
       }
       nextServer.render(req, res, req.path, props as any)
@@ -110,7 +111,8 @@ conn.then(async () => {
       const props = await getInitialProps(req.cookies.session)
       if (props?.configs?.theme) {
         res.cookie('theme', props?.configs?.theme, {
-          maxAge: 365 * 24 * 60 * 60 * 1000
+          maxAge: 365 * 24 * 60 * 60 * 1000,
+          sameSite: 'strict'
         })
       }
       nextServer.render(req, res, req.path, props as any)
@@ -120,9 +122,13 @@ conn.then(async () => {
       return handle(req, res)
     })
 
+    if (process.env.ROUTINES_ENABLE) {
+      initRoutines()
+    }
+
     const port = (() => {
       if (process.env.SERVER_PORT == 0) {
-        return process.env.SERVER_SSL_ENABLE ? 443 : 80
+        return process.env.SERVER_SSL_ENABLE === 'true' ? 443 : 80
       } else {
         return process.env.SERVER_PORT
       }

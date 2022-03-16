@@ -19,7 +19,7 @@ export const generateCode = async (user: string, type: codes_types) => {
   CodesModel.create({
     code: code,
     user: user,
-    datetime: Date.now(),
+    datetime: Math.round(Date.now() / 1000),
     type: type
   })
   return code

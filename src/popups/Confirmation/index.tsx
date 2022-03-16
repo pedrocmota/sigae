@@ -10,6 +10,7 @@ interface IConfirmation {
   body?: string,
   yes?: string,
   no?: string,
+  hideIcon?: boolean,
   size?: ISize
 }
 
@@ -18,7 +19,9 @@ const Confirmation: React.FunctionComponent<IConfirmation> = (props) => {
     <ThemeProvider theme={contexts.UIContext.theme}>
       <Wrapper>
         <Header>
-          <Sigae />
+          {(!props.hideIcon) && (
+            <Sigae />
+          )}
           <Title>
             {props?.title || 'Deseja continuar?'}
           </Title>
@@ -50,8 +53,8 @@ export const showConfirmation = (callback: (confirmed: boolean) => void, props?:
       deny.style.width = '150px'
     }
   }, {
-    width: props?.size?.width || '540px',
-    height: props?.size?.height || '400px'
+    width: props?.size?.width || '380px',
+    height: props?.size?.height || '200px'
   }, props).then((res) => {
     callback(res.isConfirmed)
   })

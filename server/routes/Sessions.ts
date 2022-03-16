@@ -26,7 +26,8 @@ routes.post('/sessions/login',
           const session = await generateSession(user.id, user.type, agent, ip)
           if (req.headers['no-cookie'] === undefined) {
             res.cookie('session', session.id, {
-              maxAge: process.env.SESSION_TIME as unknown as number * 1000
+              maxAge: process.env.SESSION_TIME as unknown as number * 1000,
+              sameSite: 'strict'
             })
           }
           res.send({token: session.id})
@@ -97,7 +98,7 @@ routes.get('/sessions/list',
   requireSession(),
   slowDown('default'),
   async (req, res) => {
-    res.send(await getSessionsList(req.session!.user))
+    res.send(await getSessionsList(req.session!.user, req.session!.token))
   })
 
 export default routes

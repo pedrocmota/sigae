@@ -22,7 +22,6 @@ import MenuBookIcon from '@mui/icons-material/MenuBook'
 import SchoolIcon from '@mui/icons-material/School'
 import PersonIcon from '@mui/icons-material/Person'
 import SettingsIcon from '@mui/icons-material/Settings'
-import EngineeringIcon from '@mui/icons-material/Engineering'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 
 import {Container, InfoContainer, Avatar, Name, LinesContainer} from './styles'
@@ -96,12 +95,12 @@ const Sidebar: React.FunctionComponent = () => {
         </Node>
 
         <Node title="Meu usuário" Icon={PersonIcon} showable>
-          <Row title="Minha estatísticas" module="/modulo/usuario/estatisticas" selected={
-            pathname.startsWith('/modulo/usuario/estatisticas')
-          } showable={data.auth || false} />
-
           <Row title="Dados e configurações" module="/modulo/usuario/configuracoes" selected={
             pathname.startsWith('/modulo/usuario/configuracoes')
+          } showable={data.auth || false} />
+
+          <Row title="Sessões ativas" module="/modulo/usuario/sessoes" selected={
+            pathname.startsWith('/modulo/usuario/sessoes')
           } showable={data.auth || false} />
 
           <Row title="Alterar senha" showable={data.auth} onAction={() => { }} />
@@ -113,24 +112,6 @@ const Sidebar: React.FunctionComponent = () => {
           <Row title="Termos de uso" showable onAction={showPolicy} />
 
           <Row title="Sobre o SiGAÊ" showable onAction={showAbout} />
-        </Node>
-
-        <Node title="Chamados" Icon={EngineeringIcon} showable>
-          <Row title="Meus chamados abertos" module="/modulo/chamados?filtro=abertos" selected={
-            pathname.startsWith('/modulo/chamados')
-            && !pathname.startsWith('/modulo/chamados/abrir')
-            && urlParsed.filtro === 'abertos'
-          } showable={data.auth || false} />
-
-          <Row title="Meus chamados" module="/modulo/chamados" selected={
-            pathname.startsWith('/modulo/chamados')
-            && !pathname.startsWith('/modulo/chamados/abrir')
-            && urlParsed.filtro !== 'abertos'
-          } showable={data.auth || false} />
-
-          <Row title="Abrir chamado" module="/modulo/chamados/abrir" selected={
-            pathname === '/modulo/chamados/abrir'
-          } showable={data.auth || false} />
         </Node>
 
         <Row title="Finalizar sessão" Icon={ExitToAppIcon} showable={data.auth} onAction={() => {
